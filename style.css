@@ -17,6 +17,12 @@ body {
     position: relative;
     min-height: 100vh;
     width: 100%;
+
+    background-image: url(img/fundo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .sideBar {
     position: fixed;
@@ -82,10 +88,6 @@ body {
     position: absolute;
     min-height: 100%;
     width: calc(100% - 7.8rem);
-    left: 7.8rem;
-
-    display: flex;
-    flex-wrap: wrap;
 }
 .sideBar ~ .homeContent {
     width: calc(100% - 24rem);
