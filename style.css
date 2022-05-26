@@ -102,16 +102,23 @@ body {
     background: black;
     border-radius: 12px;
     border: none;
-    margin-top: 68rem;
-    margin-left: 45rem;
+    /*margin-top: 68rem;
+    margin-left: 45rem;*/
     text-transform: uppercase;
     z-index: 10;
+    top: 90%;
+    left: 55%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
 }
-
+#carregarMais:hover{
+    background: #272B30;
+}
 
 /* ================================ */
 
 .gallery {
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,7 +134,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     width: 31%;
-    height: 400px;
+    height: 350px;
     margin-bottom: 4%;
     padding: 3%;
     display: flex;

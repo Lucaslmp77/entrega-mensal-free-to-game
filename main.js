@@ -4,25 +4,31 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical   ====ALFABÉTICA====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical   ====ALFABÉTICA====*/ 
 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-		'X-RapidAPI-Key': '634d00049amsh9a4631d4d411797p170e5djsndf01e8892ac6'
-	}
-};
 
-const request = async() => {
-    const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity';
-    fetch(url, options)
-    const dados = await fetch(url);
-    const jogos = await dados.json();
-    console.log(jogos);
-    addDez(jogos);
+function main() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+        .then(response => response.json())
+        .then(data =>{
+            const jogos = data
+            /*const jogos1 = data[0]
+            console.log(jogos1)*/
+            for(var i = num; i < num+9; i++) {
+                const jogosdiv =jogos[i+ num]
+                console.log(jogos)
+                criadiv(jogosdiv);
+            }
+            num += 10;
+        })
 }
-
 var num = 0;
-
+main()
 function addDez(jogos) {
     for(var i = 0; i < 10; i++) {
         var jogosTemporarios = jogos[i + num];
@@ -48,5 +54,5 @@ function criadiv(jogos) {
     div1.appendChild(div4);
 }
 
-document.getElementById('carregarMais')
-        .addEventListener('click',request);
+/*document.getElementById('carregarMais')
+        .addEventListener('click',request);*/
