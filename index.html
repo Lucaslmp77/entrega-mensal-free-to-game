@@ -1,88 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>Titulo</title>
-    </head>
-    <body>
-        <div class="sideBar">
-            <div class="logoContent">
-                <div class="logo">
-                    <img src="img/logo.png" alt="imagem controle">
-                    <h1 class="logoName">Game to Estudent</h1>
-                </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="banner.js" defer></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="carrossel">
+            <div class="container" id="img">
+                <img src="img/pubg.jfif" alt="pubg">
+                <img src="img/fortnite.jfif" alt="fortnite">
+                <img src="img/minecraft.jfif" alt="minecraft">
             </div>
-            <ul class="navList">
-                <li>
-                    <a id="homeId">
-                        <img src="img/home.png" alt="imagem home">
-                        <span class="linksName">HOME</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/pvp.png" alt="imagem pvp">
-                        <span class="linksName">Ordem Alfabética</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/mmo.png" alt="imagem mmo">
-                        <span class="linksName">Relevância</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/survival.png" alt="imagem survival">
-                        <span class="linksName">SURVIVAL</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/card.png" alt="imagem card">
-                        <span class="linksName">PVP</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/fighting.png" alt="imagem fighting">
-                        <span class="linksName">HORROR</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/shooting.png" alt="imagem shooting">
-                        <span class="linksName">ZUMBI</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="img/home.png" alt="imagem home">
-                        <span class="linksName">ESTRATÉGIA</span>
-                    </a>
-                </li> 
-            </ul>
         </div>
-        <nav>
-            <ul>
-                <li><a><img src="imgs/Logo.png"></a></li>
-                <li><a class="navLink" href="#gallerySection">PC</a></li>
-                <li><a class="navLink" href="#teamSection">Windows</a></li>
-                <li><a class="navLink" href="#contactSection">All</a></li>
-                <li><a class="navLink" href="#contactSection">Favorite</a></li>
-            </ul>
-        </nav>
-        <div class="homeContent">
-            <div id="scroller"></div>
-            <div class="gallery"></div>
-            <button id="carregarMais" onclick="main()">carregar mais</button>
-        </div>
-        <footer class="footer">
-            <p>© Game to Estudent — Todos os direitos reservados.</p>
-        </footer>
-        <script src="main.js"></script>
-    </body>
+    </div>
+    <!-- <div class="botao-esquerdo">
+        <button class="seta-esquerda seta" id="esquerda">
+            &leftarrow;
+        </button>
+    </div>
+    <div class="botao-direito">
+        <button class="seta-direita seta" id="direita">
+            &rightarrow;
+        </button>
+    </div> -->
+</body>
 </html>
