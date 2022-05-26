@@ -7,6 +7,9 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=racing   ====RACING====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=horror   ====HORROR====*/ 
 
+var imagensObj = ["img/home.png", "img/relevancia.png", "img/home.png", "img/relevancia.png", "img/relevancia.png", "img/home.png", "img/relevancia.png", "img/relevancia.png"];
+var nomeObj = ["HOME", "RELEVÂNCIA", "ALFABÉTICA", "MMORPG", "BATTLE ROYALE", "SPORTS", "RACING", "HORROR"];
+
 function logo() {
     const setaSideBar = document.querySelector('.sideBar');
     const criaLogoContent = document.createElement('div');
@@ -29,192 +32,33 @@ function logo() {
     setaLogo.appendChild(criaH1Logo);
 }
 
-function home() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
+function categorias() {
+    for(var i = 0; i < 8; i++){
+        const setaSideBar = document.querySelector('.sideBar');
+        const criaUl = document.createElement('ul');
+        criaUl.setAttribute('class', 'navList');
+        setaSideBar.appendChild(criaUl);
 
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
+        const criaLi = document.createElement('li');
+        criaUl.appendChild(criaLi);
 
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
+        const criaA = document.createElement('a');
+        criaLi.appendChild(criaA);
 
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
+        const criaImgA = document.createElement('img');
+        criaImgA.src = (imagensObj[i]);
+        criaA.appendChild(criaImgA);
 
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("HOME"));
-    criaA.appendChild(criaSpanA);
-}
-
-function relevancia() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("RELEVÂNCIA"));
-    criaA.appendChild(criaSpanA);
-}
-
-function alfabetica() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("ALFABÉTICA"));
-    criaA.appendChild(criaSpanA);
-}
-
-function mmorpg() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("MMORPG"));
-    criaA.appendChild(criaSpanA);
-}
-
-function battleRoyale() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("BATTLE ROYALE"));
-    criaA.appendChild(criaSpanA);
-}
-
-function sports() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("SPORTS"));
-    criaA.appendChild(criaSpanA);
-}
-
-function racing() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("RACING"));
-    criaA.appendChild(criaSpanA);
-}
-
-function horror() {
-    const setaSideBar = document.querySelector('.sideBar');
-    const criaUl = document.createElement('ul');
-    criaUl.setAttribute('class', 'navList');
-    setaSideBar.appendChild(criaUl);
-
-    const criaLi = document.createElement('li');
-    criaUl.appendChild(criaLi);
-
-    const criaA = document.createElement('a');
-    criaLi.appendChild(criaA);
-
-    const criaImgA = document.createElement('img');
-    criaImgA.src = "img/home.png"
-    criaA.appendChild(criaImgA);
-
-    const criaSpanA = document.createElement('span');
-    criaSpanA.setAttribute('class', 'linksName');
-    criaSpanA.appendChild(document.createTextNode("HORROR"));
-    criaA.appendChild(criaSpanA);
+        const criaSpanA = document.createElement('span');
+        criaSpanA.setAttribute('class', 'linksName');
+        criaSpanA.appendChild(document.createTextNode(nomeObj[i]));
+        criaA.appendChild(criaSpanA);
+    }
 }
 
 function sideBar() {
     logo();
-    home();
-    relevancia();
-    alfabetica();
-    mmorpg();
-    battleRoyale();
-    sports();
-    racing();
-    horror();
+    categorias();
 }
 
 const options = {
