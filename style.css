@@ -15,6 +15,9 @@
     --orange-color: hsl(32, 89%, 48%);
 }
 body {
+    background-image: url("img/imagem.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
     position: relative;
     min-height: 100vh;
     width: 100%;
@@ -27,6 +30,7 @@ body {
     width: 24rem;
     background-color: var(--blue-color);
     padding: 0.6rem 1.4rem;
+    z-index: 10;
 }
 .sideBar .logoContent .logo {
     color: var(--white-color);
@@ -35,6 +39,7 @@ body {
     width: 100%;
     align-items: center;
     gap: 2rem;
+    text-align: center;
 }
 .logoContent .logo .logoName {
     font-size: 2rem;
@@ -79,25 +84,77 @@ body {
     font-size: 1.6rem;
     font-weight: 500;
 }
+nav {
+    position: fixed;
+    display:flex;
+    width: 100%;
+    background-color: var(--blue-color);
+    flex-wrap: wrap;
+}
+nav ul {
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    min-height: 50px;
+    list-style: none;
+    margin-left: 20%;
+    justify-content: space-between;
+    gap: 15%;
+}
+nav li a {
+    gap: 15%;
+    font-size: 15pt;
+    font-weight: 600;
+    color: white;
+    justify-content: space-between;
+}
+.navLink {
+    cursor: pointer;
+    transition: 0.7s;
+}
+.navLink:hover {
+    color: #A0C55F;
+}
+#scroller {
+    width: 48px;
+    height: 48px;
+    background-color: grey;
+    border: 5px solid grey;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    cursor: pointer;
+    display: none;
+    transition: 0.7s;
+    background-image: url("img/scrollBtn.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+#scroller:hover {
+    background-color: #A0C55F;
+    border: 5px solid #A0C55F;
+}
 .homeContent {
     position: absolute;
     min-height: 100%;
     width: calc(100% - 7.8rem);
     left: 7.8rem;
-
     display: flex;
     flex-wrap: wrap;
 }
 .sideBar ~ .homeContent {
     width: calc(100% - 24rem);
-    left: 24rem;
+    left: 20rem;
 }
 #carregarMais {
     position: fixed;
     font-size: 1.8rem;
     font-weight: 700;
     color: white;
-    width: 339px;
+    width: 100%;
+    max-width: 339px;
     height: 70px;
     background: black;
     border-radius: 12px;
@@ -118,25 +175,33 @@ body {
 /* ================================ */
 
 .gallery {
-    width: 90%;
-    display: flex;
+
+    width: 70%;
+    display: grid;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem 0;
-    margin: 0 auto;
-    flex-direction: row;
-    flex-wrap: wrap;
+    padding: 1rem 0;
+    margin:  auto;
+    //flex-direction: row;
+    //flex-wrap: wrap;
     justify-content: space-between;
     padding: 0;
+    grid-template-columns: repeat(auto-fit,minmax(270px, 2fr));
+    //grid-auto-rows: 450px;
+    gap: 4rem;
   }
+@media (max-width: 1250px) {
 
+}
 .galleryCard {
     background-position: center;
     background-repeat: no-repeat;
-    width: 31%;
-    height: 350px;
-    margin-bottom: 4%;
-    padding: 3%;
+    //width: 31%;
+    max-width: 350px;
+    height: 300px;
+    margin-top: 35%;
+    //margin-bottom: 2%;
+    //padding: 3%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,8 +209,34 @@ body {
     justify-content: space-between;
     border-radius: 3px;
     background-color: #e1e1e1;
+    row-gap: 3rem;
   }
-  
+@media (max-width: 760px){
+    .sideBar ~ .homeContent {
+        //width: calc(100% - 15rem);
+        left: 25%;
+    }
+}
+@media (max-width: 940px){
+    .sideBar h1{
+        display: none;
+    }
+    .sideBar{
+        height: 100%;
+        width: 21%;
+        left: 0;
+    }
+    .sideBar span{
+        display: none;
+    }
+    #carregarMais{
+        width: 40%;
+    }
+    .homeContent{
+        width: 100%;
+        left: 0;
+    }
+}
   .galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
@@ -156,14 +247,14 @@ body {
   }
   
   .galleryCard:hover {
-    width: 130%;
+      width: 110%;
     max-width: 400px;
     transition:width 3s;
     background-size: 90%;
     color: #FFFFFF;
     text-shadow: 5px 5px 10px black;
     background-color: #272B30;
-    filter: grayscale(0%);
+
   }
   
   .galleryCardBtn:hover {
@@ -175,10 +266,28 @@ body {
     padding: 0.6rem 1rem;
     border: none;
     color: cadetblue;
-    font-size: 2rem;
+      margin: -15px;
+    font-size: 3rem;
     text-transform: uppercase;
     transition: background-color 1s;
     transition: color 0.6s;
     cursor: pointer;
     text-shadow: none;
   }
+.footer {
+    width: 100%;
+    position: fixed;
+    top: 98.5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    background-color: #272B30;
+}
+.footer p {
+    margin: 1em;
+    margin-left: 10%;
+}

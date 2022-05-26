@@ -21,7 +21,7 @@ function main() {
             console.log(jogos1)*/
             for(var i = num; i < num+9; i++) {
                 const jogosdiv =jogos[i+ num]
-                console.log(jogos)
+                /*console.log(jogos)*/
                 criadiv(jogosdiv);
             }
             num += 10;
@@ -48,11 +48,35 @@ function criadiv(jogos) {
     div1.appendChild(div3);
     div1.style.backgroundImage=`url(${jogos.thumbnail})`
     const div4 = document.createElement('a')
+    const jogosdiv = jogos
+    fav(jogosdiv);
+    //console.log(jogosdiv)
+    div4.setAttribute('script', jogos)
     div4.setAttribute('class', 'galleryCardBtn')
+    //div4.setAttribute('onclick', 'fav(jogos)')
     div4.innerHTML = '&#10025;';
-    div4.value = jogos; //
     div1.appendChild(div4);
 }
+function fav(jogos){
+    const jogo1 = jogos
+    console.log(jogos)
 
-/*document.getElementById('carregarMais')
-        .addEventListener('click',request);*/
+}
+    document.querySelector("[name='phone']");
+    let scroller = document.getElementById("scroller")
+
+    window.onscroll = function () {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            scroller.style.display = "block";
+        } else {
+            scroller.style.display = "none";
+        }
+    }
+
+
+    scroller.addEventListener("click", () => {
+            document.documentElement.scrollTop = 0;
+            //descontinuada
+            document.body.scrollTop = 0;
+        }
+    )
