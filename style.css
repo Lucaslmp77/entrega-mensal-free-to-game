@@ -72,7 +72,6 @@ body {
 .sideBar ul li a img {
     height: 3.5rem;
     min-width: 3.5rem;
-    border-radius: 0.5rem;
     margin-right: 2rem;
     text-align: center;
 }
