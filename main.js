@@ -48,17 +48,15 @@ function criadiv(jogos) {
     div1.appendChild(div3);
     div1.style.backgroundImage=`url(${jogos.thumbnail})`
     const div4 = document.createElement('a')
-    const jogosdiv = jogos
-    fav(jogosdiv);
-    //console.log(jogosdiv)
-    div4.setAttribute('script', jogos)
     div4.setAttribute('class', 'galleryCardBtn')
-    //div4.setAttribute('onclick', 'fav(jogos)')
+    div4.setAttribute('onclick', 'fav()')
+    const jogosDiv = jogos
+    fav(jogosDiv)
     div4.innerHTML = '&#10025;';
     div1.appendChild(div4);
 }
 function fav(jogos){
-    const jogo1 = jogos
+    //const jogo1 = jogos
     console.log(jogos)
 
 }
