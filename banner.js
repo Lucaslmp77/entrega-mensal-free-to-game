@@ -1,16 +1,30 @@
-const imgs = document.getElementById("img");
-const img = document.querySelectorAll("#img img");
+const slides = document.querySelectorAll(".slide");
+const carrossel = document.getElementById("carrossel");
+const esquerda = document.getElementById("esquerda");
+const direita = document.getElementById("direita");
 
-let idx = 0;
+const contador_slides = slides.length;
 
-function carrossel() {
-    idx++;
+let slide_atual = 0;
 
-    if (idx > img.length - 1) {
-        idx = 0;
+esquerda.addEventListener("click", () => {
+    slide_atual--;
+    if(slide_atual < 0) {
+        slide_atual = contador_slides - 1;
     }
+    atualizar_carrossel();
+})
 
-    imgs.style.transform = `translateX(${-idx * 901}px)`;
+direita.addEventListener("click", () => {
+    slide_atual++;
+    if(slide_atual > contador_slides - 1) {
+        slide_atual = 0
+    }
+    atualizar_carrossel();
+})
+
+function atualizar_carrossel() {
+    carrossel.style.transform = `translateX(${
+        -slide_atual * slides[0].offsetWidth
+        }px)`;
 }
-
-setInterval(carrossel, 5000);
