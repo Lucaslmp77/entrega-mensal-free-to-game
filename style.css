@@ -123,7 +123,7 @@ nav li a {
     border-radius: 50%;
     position: fixed;
     bottom: 50px;
-    right: 50px;
+    right: 40px;
     cursor: pointer;
     display: none;
     transition: 0.7s;
@@ -143,6 +143,7 @@ nav li a {
     left: 7.8rem;
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 .sideBar ~ .homeContent {
     width: calc(100% - 24rem);
@@ -177,31 +178,28 @@ nav li a {
 /* ================================ */
 
 .gallery {
-
-    width: 70%;
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 100%;
     display: grid;
     align-items: center;
     justify-content: center;
-    padding: 1rem 0;
-    margin:  auto;
-    //flex-direction: row;
-    //flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0;
-    grid-template-columns: repeat(auto-fit,minmax(270px, 2fr));
+    //padding: 1rem 0;
+    text-align: center;
+    //justify-content: space-between;
+    //padding: 2rem;
+    grid-template-columns: repeat(auto-fit,minmax(350px, 1fr));
     //grid-auto-rows: 450px;
-    gap: 4rem;
+    gap: 3rem;
   }
-@media (max-width: 1250px) {
 
-}
 .galleryCard {
     background-position: center;
     background-repeat: no-repeat;
+    background-size: 95%;
     //width: 31%;
-    max-width: 350px;
+    width: 300px;
     height: 300px;
-    margin-top: 35%;
     //margin-bottom: 2%;
     //padding: 3%;
     display: flex;
@@ -210,13 +208,27 @@ nav li a {
     flex-direction: column;
     justify-content: space-between;
     border-radius: 3px;
-    background-color: #e1e1e1;
-    row-gap: 3rem;
+    background-color: #FFFFFF;
+    //row-gap: 1rem;
   }
+.imagemJogo{
+    width: 100%;
+    transition: 0.6s;
+}
+.imagemJogo:hover{
+
+}
+
+@media (max-width: 450px){
+    .sideBar{
+        height: 100%;
+        width: 10rem;
+    }
+}
 @media (max-width: 760px){
     .sideBar ~ .homeContent {
         //width: calc(100% - 15rem);
-        left: 25%;
+        left: 18%;
     }
 }
 @media (max-width: 940px){
@@ -239,6 +251,11 @@ nav li a {
         left: 0;
     }
 }
+@media (max-width: 1000px){
+    .homeContent{
+        margin-left: 15%;
+    }
+}
   .galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
@@ -247,10 +264,9 @@ nav li a {
     cursor: default;
     text-align: center;
   }
-  
   .galleryCard:hover {
-      width: 110%;
-    max-width: 400px;
+    width: 110%;
+    max-width: 300px;
     transition:width 3s;
     background-size: 90%;
     color: #FFFFFF;
@@ -275,6 +291,16 @@ nav li a {
     transition: color 0.6s;
     cursor: pointer;
     text-shadow: none;
+  }
+  .GeneroDoJogo{
+      border-radius: .25rem;
+      text-align: center;
+      font-weight: 700;
+      background: #A0C55F;
+      color: #272B30;
+      width: 20%;
+      text-shadow: none;
+      font-size: 120%;
   }
 .footer {
     width: 100%;

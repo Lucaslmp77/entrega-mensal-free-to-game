@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <title>Titulo</title>
+        <title>Game to Estudent</title>
     </head>
     <body>
         <div class="sideBar">
@@ -15,27 +15,28 @@
                     <h1 class="logoName">Game to Estudent</h1>
                 </div>
             </div>
-            <ul class="navList">
+            <ul class="navList" id="navList">
                 <li>
                     <a id="homeId">
                         <img src="img/home.png" alt="imagem home">
                         <span class="linksName">HOME</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li  onclick="mostrarAtivo(this)">
+                    <a>
+                    <a id="alfabetico" class="alfabetico" href="#" onclick="catAlfabetia()">
                         <img src="img/pvp.png" alt="imagem pvp">
                         <span class="linksName">Ordem Alfabética</span>
-                    </a>
+                    </a></a>
                 </li>
-                <li>
-                    <a href="#">
+                <li onclick="mostrarAtivo(this)">
+                    <a id="relevancia" href="#" onclick="relevancia()">
                         <img src="img/mmo.png" alt="imagem mmo">
                         <span class="linksName">Relevância</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li onclick="mostrarAtivo(this)">
+                    <a href="#" onclick="mostrarAtivo(this);">
                         <img src="img/survival.png" alt="imagem survival">
                         <span class="linksName">SURVIVAL</span>
                     </a>
@@ -83,6 +84,6 @@
         <footer class="footer">
             <p>© Game to Estudent — Todos os direitos reservados.</p>
         </footer>
-        <script src="main.js"></script>
+        <script src="main.js" defer></script>
     </body>
 </html>
