@@ -28,7 +28,7 @@ function logo() {
 
     const criaH1Logo = document.createElement('h1');
     criaH1Logo.setAttribute('class', 'logoName');
-    criaH1Logo.appendChild(document.createTextNode("TROJAO"));
+    criaH1Logo.appendChild(document.createTextNode("SÓ A NATA"));
     setaLogo.appendChild(criaH1Logo);
 }
 
@@ -70,25 +70,39 @@ const options = {
 };
 
 const request = async() => {
-    sideBar();
     const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity';
     fetch(url, options)
     const dados = await fetch(url);
     const jogos = await dados.json();
-    console.log(jogos);
     addDez(jogos);
 }
-
-request();
 
 var num = 0;
 
 function addDez(jogos) {
-    for(var i = 0; i < 10; i++) {
+    for(var i = 0; i < 9; i++) {
         var jogosTemporarios = jogos[i + num];
         criaCard(jogosTemporarios);
     }
-    num += 10;
+    num += 9;
+}
+
+const requestBanner = async() => {
+    const pegaUrl = 'https://free-to-play-games-database.p.rapidapi.com/api/games?category=horror';
+    fetch(pegaUrl, options)
+    const recebeDados = await fetch(pegaUrl);
+    const jogosBanner = await recebeDados.json();
+
+    var recebeJogoBanner = jogosBanner[1];
+    criaBanner(recebeJogoBanner);
+}
+
+function criaBanner(jogosBanner) {
+    const setaDiv = document.querySelector('.homeContent');
+    const criaBanner = document.createElement('div');
+    criaBanner.setAttribute('class', 'galleryBanner');
+    criaBanner.style.backgroundImage=`url(${jogosBanner.thumbnail})`;
+    setaDiv.insertBefore(criaBanner, carregarMais);
 }
 
 function criaCard(jogos) {
@@ -108,6 +122,10 @@ function criaCard(jogos) {
     criaStar.innerHTML = '&#10025;';
     criaDiv.appendChild(criaStar);
 }
+
+sideBar();
+request();
+requestBanner();
 
 document.getElementById('carregarMais')
         .addEventListener('click',request);
