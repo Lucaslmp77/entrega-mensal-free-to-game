@@ -85,11 +85,10 @@ body {
     font-weight: 500;
 }
 nav {
-    position: fixed;
+    //position: fixed;
     display:flex;
     width: 100%;
     background-color: var(--blue-color);
-    flex-wrap: wrap;
 }
 nav ul {
     display: flex;
@@ -107,6 +106,18 @@ nav li a {
     font-weight: 600;
     color: white;
     justify-content: space-between;
+    cursor: pointer;
+}
+.alert-box-success{
+    animation: hide 2s 2s forwards;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    display: flex;
+    top: 90%;
+    left: 55%;
+    transform: translate(-50%,-50%);
 }
 .navLink {
     cursor: pointer;

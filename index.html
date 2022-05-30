@@ -17,26 +17,26 @@
             </div>
             <ul class="navList" id="navList">
                 <li>
-                    <a id="homeId">
+                    <a id="homeId" href="#" onclick="main()">
                         <img src="img/home.png" alt="imagem home">
                         <span class="linksName">HOME</span>
                     </a>
                 </li>
-                <li  onclick="mostrarAtivo(this)">
+                <li>
                     <a>
                     <a id="alfabetico" class="alfabetico" href="#" onclick="catAlfabetia()">
                         <img src="img/pvp.png" alt="imagem pvp">
                         <span class="linksName">Ordem Alfabética</span>
                     </a></a>
                 </li>
-                <li onclick="mostrarAtivo(this)">
+                <li>
                     <a id="relevancia" href="#" onclick="relevancia()">
                         <img src="img/mmo.png" alt="imagem mmo">
                         <span class="linksName">Relevância</span>
                     </a>
                 </li>
-                <li onclick="mostrarAtivo(this)">
-                    <a href="#" onclick="mostrarAtivo(this);">
+                <li>
+                    <a href="#">
                         <img src="img/survival.png" alt="imagem survival">
                         <span class="linksName">SURVIVAL</span>
                     </a>
@@ -69,13 +69,14 @@
         </div>
         <nav>
             <ul>
-                <li><a><img src="imgs/Logo.png"></a></li>
-                <li><a class="navLink" href="#gallerySection">PC</a></li>
-                <li><a class="navLink" href="#teamSection">Windows</a></li>
-                <li><a class="navLink" href="#contactSection">All</a></li>
-                <li><a class="navLink" href="#contactSection">Favorite</a></li>
+                <li><a class="navLink" href="#">PC</a></li>
+                <li><a class="navLink" href="#">Windows</a></li>
+                <li><a class="navLink" href="#">All</a></li>
+                <li><a class="navLink" href="#" onclick="favorite()">Favorite</a></li>
             </ul>
         </nav>
+        <div class="alert-box-success">Jogo adicionado aos favoritos !</div>
+        <div class="alert-box-retirado">Jogo foi retirado dos favoritos !</div>
         <div class="homeContent">
             <div id="scroller"></div>
             <div class="gallery"></div>

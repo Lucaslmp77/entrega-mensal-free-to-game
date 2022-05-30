@@ -9,7 +9,15 @@ var MEUS_FAVORITOS = [];
 var num = 0;
 var num2 = 0;
 var num3 = 0
-let APAGA_SEÇÃO
+let APAGA_SEÇÃO = document.querySelector('.gallery')
+function favorite(){
+    //APAGA_SEÇÃO = document.querySelector('.gallery')
+    APAGA_SEÇÃO.innerText= ""
+
+    MEUS_FAVORITOS.forEach((elemento) => {
+        criadiv(elemento);
+    })
+}
 function main() {
     const options = {
         method: 'GET',
@@ -57,11 +65,11 @@ function criadiv(jogo) {
     ContainerDoJogo.appendChild(GeneroDoJogo)
     const BotaoFavorito = document.createElement('a')
     BotaoFavorito.setAttribute('class', 'galleryCardBtn')
-    BotaoFavorito.setAttribute('onclick', `fav(${jogo.id})`)
+    BotaoFavorito.setAttribute('onclick', `AddFav(${jogo.id})`)
     BotaoFavorito.innerHTML = '&#10025;';
     ContainerDoJogo.appendChild(BotaoFavorito);
 }
-function fav(idDoJogo){
+function AddFav(idDoJogo){
     var jogoClicado = ELEMENTOS_CARREGADOS.find(element => element.id === idDoJogo)
     console.log("Jogo clicado",jogoClicado)
     MEUS_FAVORITOS.push(jogoClicado)
@@ -74,7 +82,6 @@ function fav(idDoJogo){
 function relevancia(){
     var JOGOS_RELEVANTES = []
     var MAIS_DEZ_JOGOS_REL = []
-    APAGA_SEÇÃO = document.querySelector('.gallery')
     APAGA_SEÇÃO.innerText= ""
     /*const estiliza = document.querySelector('#relevancia')
     estiliza.style.backgroundColor = "#808080";*/
@@ -102,7 +109,6 @@ function relevancia(){
 function catAlfabetia(){
     var JOGOS_ALFABETICOS = [];
     var MAIS_DEZ_JOGOS_ALFA = [];
-    APAGA_SEÇÃO = document.querySelector('.gallery')
     APAGA_SEÇÃO.innerText= ""
     /*const estiliza = document.querySelector('.alfabetico')
     estiliza.style.backgroundColor = "#808080";*/
@@ -129,7 +135,7 @@ function catAlfabetia(){
         })
 }
 
-function mostrarAtivo(tag){
+/*function mostrarCatAtivo(tag){
     var tag_li = document.getElementById('navList');
     var tag_a = tag_li.getElementsByTagName('a');
     console.log(tag_a.length)
@@ -138,7 +144,7 @@ function mostrarAtivo(tag){
         tag_a[i].style.color = "";
     }
     tag_a.style.backgroundColor = "#ff0000";
-}
+}*/
 
     document.querySelector("[name='phone']");
     let scroller = document.getElementById("scroller")
@@ -155,3 +161,7 @@ function mostrarAtivo(tag){
             document.body.scrollTop = 0;
         }
     )
+$( ".galleryCardBtn" ).click(function() {
+    $( ".alert-box-success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+    console.log("teste")
+});
