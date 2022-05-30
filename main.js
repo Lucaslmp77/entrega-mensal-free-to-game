@@ -7,8 +7,26 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=racing   ====RACING====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=horror   ====HORROR====*/ 
 
+
+//objetos sidebar
 var imagensObj = ["img/home.png", "img/relevancia.png", "img/alfabetica.png", "img/mmo.png", "img/battle.png", "img/sports.png", "img/racing.png", "img/horror.png"];
 var nomeObj = ["HOME", "RELEVÂNCIA", "ALFABÉTICA", "MMORPG", "BATTLE ROYALE", "SPORTS", "RACING", "HORROR"];
+
+//objetos header
+var headerObj = ["PC", "Browser", "All", "Favoritos"];
+
+function header() {
+    const setaHomeContent = document.querySelector('.homeContent');
+    const criaNav = document.createElement('nav');
+    criaNav.setAttribute('class', 'headerNav');
+    setaHomeContent.insertBefore(criaNav, carregarMais);
+    for(var i = 0; i < 4; i++){
+    const criaA = document.createElement('a');
+    criaA.setAttribute('class', 'ancorasHeader');
+    criaA.appendChild(document.createTextNode(headerObj[i]));
+    criaNav.appendChild(criaA);
+    }
+}
 
 function logo() {
     const setaSideBar = document.querySelector('.sideBar');
@@ -69,24 +87,6 @@ const options = {
 	}
 };
 
-const request = async() => {
-    const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity';
-    fetch(url, options)
-    const dados = await fetch(url);
-    const jogos = await dados.json();
-    addDez(jogos);
-}
-
-var num = 0;
-
-function addDez(jogos) {
-    for(var i = 0; i < 9; i++) {
-        var jogosTemporarios = jogos[i + num];
-        criaCard(jogosTemporarios);
-    }
-    num += 9;
-}
-
 const requestBanner = async() => {
     const pegaUrl = 'https://free-to-play-games-database.p.rapidapi.com/api/games?category=horror';
     fetch(pegaUrl, options)
@@ -103,6 +103,24 @@ function criaBanner(jogosBanner) {
     criaBanner.setAttribute('class', 'galleryBanner');
     criaBanner.style.backgroundImage=`url(${jogosBanner.thumbnail})`;
     setaDiv.insertBefore(criaBanner, carregarMais);
+}
+
+const request = async() => {
+    const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity';
+    fetch(url, options)
+    const dados = await fetch(url);
+    const jogos = await dados.json();
+    addDez(jogos);
+}
+
+var num = 0;
+
+function addDez(jogos) {
+    for(var i = 0; i < 9; i++) {
+        var jogosTemporarios = jogos[i + num];
+        criaCard(jogosTemporarios);
+    }
+    num += 9;
 }
 
 function criaCard(jogos) {
@@ -124,6 +142,7 @@ function criaCard(jogos) {
 }
 
 sideBar();
+header();
 request();
 requestBanner();
 
