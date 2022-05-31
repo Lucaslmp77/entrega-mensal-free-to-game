@@ -7,6 +7,18 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=racing   ====RACING====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=horror   ====HORROR====*/ 
 
+//variaveis para consumo da api e carregar mais
+var jogos = [];
+var num = 0;
+
+//variavel para jogos temporarios que aparecem na tela
+var jogosTemp = [];
+
+//limpa tela
+let apagaSecao = document.querySelector('.gallery');
+
+//favoritos
+var meusFavoritos = [];
 
 //objetos sidebar
 var imagensObj = ["img/home.png", "img/relevancia.png", "img/alfabetica.png", "img/mmo.png", "img/battle.png", "img/sports.png", "img/racing.png", "img/horror.png"];
@@ -15,17 +27,16 @@ var nomeObj = ["HOME", "RELEVÂNCIA", "ALFABÉTICA", "MMORPG", "BATTLE ROYALE", 
 //objetos header
 var headerObj = ["PC", "Browser", "All", "Favoritos"];
 
-function header() {
-    const setaHomeContent = document.querySelector('.homeContent');
-    const criaNav = document.createElement('nav');
-    criaNav.setAttribute('class', 'headerNav');
-    setaHomeContent.insertBefore(criaNav, carregarMais);
-    for(var i = 0; i < 4; i++){
-    const criaA = document.createElement('a');
-    criaA.setAttribute('class', 'ancorasHeader');
-    criaA.appendChild(document.createTextNode(headerObj[i]));
-    criaNav.appendChild(criaA);
-    }
+//remove botao carregar mais quando a opcao favoritos estiver selecionada
+function clickFavorite() {
+    var recebeClass = document.querySelector('.removeElements');
+    recebeClass.style.display = 'none';
+}
+
+//remove banner quando determinada opcao for selecionada
+function removeBanner() {
+    var recebeClass = document.querySelector('.galleryBanner');
+    recebeClass.style.display = 'none';
 }
 
 function logo() {
@@ -74,22 +85,53 @@ function categorias() {
     }
 }
 
-function sideBar() {
-    logo();
-    categorias();
+function header() {
+    const setaHomeContent = document.querySelector('.homeContent');
+    const criaNav = document.createElement('nav');
+    criaNav.setAttribute('class', 'headerNav');
+    setaHomeContent.insertBefore(criaNav, carregarMais);
+    for(var i = 0; i < 4; i++){
+    const criaA = document.createElement('a');
+    criaA.setAttribute('class', 'ancorasHeader');
+    criaA.appendChild(document.createTextNode(headerObj[i]));
+    criaNav.appendChild(criaA);
+        if(i == 3){
+            criaA.setAttribute('onclick', 'favorite()');
+        }
+    }
 }
 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-		'X-RapidAPI-Key': '634d00049amsh9a4631d4d411797p170e5djsndf01e8892ac6'
-	}
-};
+function request() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+        .then(response => response.json())
+        .then(dados =>{
+
+            todosJogos = dados;
+            jogosTemp = dados.slice(0+num, 9+num)
+            jogosTemp.forEach((elemento) => {
+                criaCard(elemento);
+                num++
+            })
+        })
+}
 
 const requestBanner = async() => {
+    const optionsBanner = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': '634d00049amsh9a4631d4d411797p170e5djsndf01e8892ac6'
+        }
+    };
     const pegaUrl = 'https://free-to-play-games-database.p.rapidapi.com/api/games?category=horror';
-    fetch(pegaUrl, options)
+    fetch(pegaUrl, optionsBanner)
     const recebeDados = await fetch(pegaUrl);
     const jogosBanner = await recebeDados.json();
 
@@ -105,40 +147,60 @@ function criaBanner(jogosBanner) {
     setaDiv.insertBefore(criaBanner, carregarMais);
 }
 
-const request = async() => {
-    const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity';
-    fetch(url, options)
-    const dados = await fetch(url);
-    const jogos = await dados.json();
-    addDez(jogos);
-}
-
-var num = 0;
-
-function addDez(jogos) {
-    for(var i = 0; i < 9; i++) {
-        var jogosTemporarios = jogos[i + num];
-        criaCard(jogosTemporarios);
-    }
-    num += 9;
-}
-
 function criaCard(jogos) {
     const setaDiv = document.querySelector('.gallery');
     const criaDiv = document.createElement('div');
     criaDiv.setAttribute('class', 'galleryCard');
     setaDiv.appendChild(criaDiv);
 
+    const LinkDojogo = document.createElement('a');
+    LinkDojogo.setAttribute('class', 'linkDoJogo');
+    LinkDojogo.setAttribute('href', jogos.freetogame_profile_url);
+    LinkDojogo.setAttribute('target', '_blank');
+    criaDiv.appendChild(LinkDojogo);
+    const ImagemDoJogo = document.createElement('img');
+    ImagemDoJogo.setAttribute('class', 'imagemJogo');
+    ImagemDoJogo.src= jogos.thumbnail;
+    LinkDojogo.appendChild(ImagemDoJogo);
+
     const criaTitle = document.createElement('h2');
     criaTitle.setAttribute('class', 'galleryCardTitle');
     criaTitle.innerHTML = jogos.title;
     criaDiv.appendChild(criaTitle);
-    criaDiv.style.backgroundImage=`url(${jogos.thumbnail})`;
 
-    const criaStar = document.createElement('a');
-    criaStar.setAttribute('class', 'galleryCardBtn');
-    criaStar.innerHTML = '&#10025;';
-    criaDiv.appendChild(criaStar);
+    const BotaoFavorito = document.createElement('a');
+    BotaoFavorito.setAttribute('class', 'galleryCardBtn');
+    BotaoFavorito.setAttribute('onclick', `AddFav(${jogos.id})`);
+    BotaoFavorito.innerHTML = '&#10025;';
+    criaDiv.appendChild(BotaoFavorito);
+}
+
+function favorite(){
+    clickFavorite();
+    removeBanner();
+
+    var recebeClass = document.querySelector('.gallery');
+    recebeClass.style.marginTop = '7rem';
+
+    apagaSecao.innerText= ""
+    meusFavoritos.forEach((elemento) => {
+        criaCard(elemento);
+    })
+}
+
+function AddFav(idDoJogo){
+    var jogoClicado = jogosTemp.find(element => element.id === idDoJogo)
+    console.log("Jogo clicado",jogoClicado)
+    meusFavoritos.push(jogoClicado)
+    meusFavoritos = meusFavoritos.filter(function (a) {
+        return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
+    }, Object.create(null))
+    console.log("MEUS_FAVORITOS: ",meusFavoritos);
+}
+
+function sideBar() {
+    logo();
+    categorias();
 }
 
 sideBar();
