@@ -29,7 +29,7 @@ var headerObj = ["PC", "Browser", "All", "Favoritos"];
 
 //remove botao carregar mais quando a opcao favoritos estiver selecionada
 function clickFavorite() {
-    var recebeClass = document.querySelector('.removeElements');
+    var recebeClass = document.querySelector('.removeBotao');
     recebeClass.style.display = 'none';
 }
 
@@ -39,6 +39,7 @@ function removeBanner() {
     recebeClass.style.display = 'none';
 }
 
+//funcao para criacao do logo no html
 function logo() {
     const setaSideBar = document.querySelector('.sideBar');
     const criaLogoContent = document.createElement('div');
@@ -61,6 +62,7 @@ function logo() {
     setaLogo.appendChild(criaH1Logo);
 }
 
+//funcao para criacao das categorias na sidebar
 function categorias() {
     for(var i = 0; i < 8; i++){
         const setaSideBar = document.querySelector('.sideBar');
@@ -72,6 +74,7 @@ function categorias() {
         criaUl.appendChild(criaLi);
 
         const criaA = document.createElement('a');
+        criaA.setAttribute('class', 'classAnc');
         criaLi.appendChild(criaA);
 
         const criaImgA = document.createElement('img');
@@ -85,6 +88,7 @@ function categorias() {
     }
 }
 
+//funcao para criacao do header (menu nav)
 function header() {
     const setaHomeContent = document.querySelector('.homeContent');
     const criaNav = document.createElement('nav');
@@ -101,7 +105,8 @@ function header() {
     }
 }
 
-function request() {
+//funcao que consome a api da categoria populares
+function requestPopulares() {
     const options = {
         method: 'GET',
         headers: {
@@ -109,7 +114,7 @@ function request() {
             'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
         }
     };
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity', options)
         .then(response => response.json())
         .then(dados =>{
 
@@ -120,8 +125,25 @@ function request() {
                 num++
             })
         })
+
+    document.getElementById('carregarMais')
+        .addEventListener('click',requestPopulares);
 }
 
+function homeClick(){
+    var setaAncora = document.querySelector('.classAnc');
+    setaAncora.addEventListener('click', () => {
+            apagaSecao.innerText= "";
+            var recebeClass = document.querySelector('.removeBotao');
+            recebeClass.style.display = '';
+            var recebeClassBanner = document.querySelector('.galleryBanner');
+            recebeClassBanner.style.display = '';
+            num = 0;
+            requestPopulares();
+        });
+}
+
+//Funcao que consome a categoria que sera visualizada no banner
 const requestBanner = async() => {
     const optionsBanner = {
         method: 'GET',
@@ -139,6 +161,7 @@ const requestBanner = async() => {
     criaBanner(recebeJogoBanner);
 }
 
+//Funcao que cria as tags do banner e insere a imagem retornada da api
 function criaBanner(jogosBanner) {
     const setaDiv = document.querySelector('.homeContent');
     const criaBanner = document.createElement('div');
@@ -147,6 +170,7 @@ function criaBanner(jogosBanner) {
     setaDiv.insertBefore(criaBanner, carregarMais);
 }
 
+//Funcao que cria as tags utilizadas em cada card + btn favoritos
 function criaCard(jogos) {
     const setaDiv = document.querySelector('.gallery');
     const criaDiv = document.createElement('div');
@@ -175,6 +199,7 @@ function criaCard(jogos) {
     criaDiv.appendChild(BotaoFavorito);
 }
 
+//Funcao favoritos
 function favorite(){
     clickFavorite();
     removeBanner();
@@ -188,6 +213,7 @@ function favorite(){
     })
 }
 
+//Funcao que adiciona o jogo aos favoritos e verifica se nao e repetido
 function AddFav(idDoJogo){
     var jogoClicado = jogosTemp.find(element => element.id === idDoJogo)
     console.log("Jogo clicado",jogoClicado)
@@ -198,6 +224,7 @@ function AddFav(idDoJogo){
     console.log("MEUS_FAVORITOS: ",meusFavoritos);
 }
 
+//Funcao da sidebar (logo + categorias)
 function sideBar() {
     logo();
     categorias();
@@ -205,8 +232,6 @@ function sideBar() {
 
 sideBar();
 header();
-request();
+requestPopulares();
 requestBanner();
-
-document.getElementById('carregarMais')
-        .addEventListener('click',request);
+homeClick();
