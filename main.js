@@ -156,7 +156,7 @@ function homeClick(){
                 .removeEventListener('click',requestMoba);
 
             document.getElementById('carregarMais')
-                .removeEventListener('click',ca);
+                .removeEventListener('click',requestCard);
 
             document.getElementById('carregarMais')
                 .removeEventListener('click',requestStrategy);
