@@ -53,6 +53,19 @@ var headerObj = ["PC", "Browser", "All", "Favoritos"];
 //classes categorias
 var nomeCatObj = ["ancHome", "ancRelevancia", "ancAlfabetica", "ancMmorpg", "ancMoba", "ancCard", "ancStrategy", "ancOpenWorld"];
 
+//objetos requests
+var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld];
+
+//remove eventListener dos requests de cada categoria
+function removeRequests(nickPage){
+    for(var i = 0; i < requests.length; i++){
+        if(requests[i] != nickPage){
+            document.getElementById('carregarMais')
+                .removeEventListener('click',requests[i]);
+        }
+    }
+}
+
 //remove botao carregar mais
 function removeBtn() {
     var recebeClass = document.querySelector('.removeBotao');
@@ -122,7 +135,7 @@ function header() {
     setaHomeContent.insertBefore(criaNav, carregarMais);
     for(var i = 0; i < 4; i++){
         const criaA = document.createElement('a');
-        criaA.setAttribute('class', 'ancorasHeader');
+        criaA.setAttribute('class', headerObj[i]);
         criaA.appendChild(document.createTextNode(headerObj[i]));
         criaNav.appendChild(criaA);
         if(i == 3){
@@ -166,27 +179,7 @@ function homeClick(){
             var recebeClassBanner = document.querySelector('.galleryBanner');
             recebeClassBanner.style.display = '';
             num = 0;
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestRelevancia);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestAlfabetica);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMmo);
-            
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMoba);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',ca);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestStrategy);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestOpenWorld);
-
+            removeRequests('requestPopulares');
             requestPopulares();
         });
 }
@@ -226,27 +219,7 @@ function relevanciaClick(){
             var recebeClassBanner = document.querySelector('.galleryBanner');
             recebeClassBanner.style.display = '';
             num = 0;
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestPopulares);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestAlfabetica);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMmo);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMoba);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestCard);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestStrategy);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestOpenWorld);
-
+            removeRequests('requestRelevancia');
             requestRelevancia();
         });
 }
@@ -286,27 +259,7 @@ function alfabeticaClick(){
             var recebeClassBanner = document.querySelector('.galleryBanner');
             recebeClassBanner.style.display = '';
             num = 0;
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestPopulares);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestRelevancia);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMmo);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMoba);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestCard);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestStrategy);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestOpenWorld);
-
+            removeRequests('requestAlfabetica');
             requestAlfabetica();
         });
 }
@@ -346,27 +299,7 @@ function mmoClick(){
             var recebeClassBanner = document.querySelector('.galleryBanner');
             recebeClassBanner.style.display = '';
             num = 0;
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestPopulares);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestRelevancia);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestAlfabetica);
-            
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestMoba);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestCard);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestStrategy);
-
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requestOpenWorld);
-
+            removeRequests('requestMmo');
             requestMmo();
         });
 }
@@ -406,27 +339,7 @@ function mobaClick(){
         var recebeClassBanner = document.querySelector('.galleryBanner');
         recebeClassBanner.style.display = '';
         num = 0;
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestPopulares);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestRelevancia);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestAlfabetica);
-        
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMmo);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestCard);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestStrategy);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestOpenWorld);
-
+        removeRequests('requestMoba');
         requestMoba();
     });
 }
@@ -466,27 +379,7 @@ function cardClick(){
         var recebeClassBanner = document.querySelector('.galleryBanner');
         recebeClassBanner.style.display = '';
         num = 0;
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestPopulares);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestRelevancia);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestAlfabetica);
-        
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMmo);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMoba);
-            
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestStrategy);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestOpenWorld);
-
+        removeRequests('requestCard');
         requestCard();
     });
 }
@@ -526,28 +419,7 @@ function strategyClick(){
         var recebeClassBanner = document.querySelector('.galleryBanner');
         recebeClassBanner.style.display = '';
         num = 0;
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestPopulares);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestRelevancia);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestAlfabetica);
-        
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMmo);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMoba);
-        
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestCard);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestOpenWorld);
-
+        removeRequests('requestStrategy');
         requestStrategy();
     });
 }
@@ -587,28 +459,7 @@ function openWorldClick(){
         var recebeClassBanner = document.querySelector('.galleryBanner');
         recebeClassBanner.style.display = '';
         num = 0;
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestPopulares);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestRelevancia);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestAlfabetica);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMmo);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestMoba);
-
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestCard);
-        
-        document.getElementById('carregarMais')
-            .removeEventListener('click',requestStrategy);
-
+        removeRequests('requestOpenWorld');
         requestOpenWorld();
     })
 }
