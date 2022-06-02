@@ -163,11 +163,42 @@ const requestBanner = async() => {
 
 //Funcao que cria as tags do banner e insere a imagem retornada da api
 function criaBanner(jogosBanner) {
+    console.log(jogosBanner)
     const setaDiv = document.querySelector('.homeContent');
     const criaBanner = document.createElement('div');
     criaBanner.setAttribute('class', 'galleryBanner');
-    criaBanner.style.backgroundImage=`url(${jogosBanner.thumbnail})`;
     setaDiv.insertBefore(criaBanner, carregarMais);
+    const divImage = document.createElement('div');
+    divImage.setAttribute('class', 'divDaImage')
+    criaBanner.appendChild(divImage)
+    const LinkDojogo = document.createElement('a');
+    LinkDojogo.setAttribute('class', 'linkDoJogo');
+    LinkDojogo.setAttribute('href', jogosBanner.freetogame_profile_url);
+    LinkDojogo.setAttribute('target', '_blank');
+    divImage.appendChild(LinkDojogo);
+    const ImagemDoJogo = document.createElement('img');
+    ImagemDoJogo.setAttribute('class', 'imagemJogoBanner');
+    ImagemDoJogo.src= jogosBanner.thumbnail;
+    LinkDojogo.appendChild(ImagemDoJogo);
+    const criaDivTexto = document.createElement('div');
+    criaDivTexto.setAttribute('class', 'bannerTexto');
+    criaBanner.appendChild(criaDivTexto);
+    let criaTitle = document.createElement('h2');
+    criaTitle.setAttribute('class', 'bannertitle');
+    criaTitle.innerHTML = jogosBanner.title;
+    criaDivTexto.appendChild(criaTitle);
+    criaTitle = document.createElement('p');
+    criaTitle.setAttribute('class', 'bannertitlep');
+    criaTitle.innerHTML = `Plataforma:<br> ${jogosBanner.platform}`;
+    criaDivTexto.appendChild(criaTitle);
+    criaTitle = document.createElement('p');
+    criaTitle.setAttribute('class', 'bannertitlep');
+    criaTitle.innerHTML = `Descrição:<br> ${jogosBanner.short_description}`;
+    criaDivTexto.appendChild(criaTitle);
+    criaTitle = document.createElement('p');
+    criaTitle.setAttribute('class', 'generoBanner');
+    criaTitle.innerHTML = jogosBanner.genre;
+    criaDivTexto.appendChild(criaTitle);
 }
 
 //Funcao que cria as tags utilizadas em cada card + btn favoritos

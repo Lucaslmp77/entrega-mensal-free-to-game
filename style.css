@@ -31,7 +31,6 @@ body {
     height: 100%;
     width: 24rem;
     padding: 0.6rem 1.4rem;
-
     background-color: rgb(58, 7, 94);
     border: 2px solid black;
 }
@@ -100,10 +99,13 @@ body {
 }
 .homeContent {
     position: absolute;
+    width: calc(100% - 7.8rem);
+    //left: 7.8rem;
     min-height: 100%;
 }
 .sideBar ~ .homeContent {
-    width: calc(100% - 24rem);
+    width: 80%;
+    //width: calc(100% - 24rem);
     left: 24rem;
 }
 #carregarMais {
@@ -138,7 +140,8 @@ body {
 .galleryCard {
     background-position: center;
     background-repeat: no-repeat;
-    width: 31%;
+    //width: 31%;
+    max-width: 350px;
     height: 400px;
     margin-bottom: 4%;
     padding: 3%;
@@ -151,6 +154,94 @@ body {
 
     background-color: rgb(152, 69, 211);
   }
+.galleryCard img{
+    display: flex;
+    width: 100%;
+}
+@media (max-width: 1250px){
+    .sideBar ~ .homeContent {
+    width: calc(100% - 35rem);
+    left: 25%;
+    }
+    .gallery{
+        display: grid;
+        //height: 400px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+        gap: 4rem;
+    }
+    .galleryCard{
+        display: flex;
+        max-width: 350px;
+        height: 300px;
+        //grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+        row-gap: 3rem;
+    }
+    .galleryBanner{
+        width: 600px;
+        flex-direction: column;
+        display: flex;
+    }
+    .headerNav{
+        width: 150%;
+    }
+}
+@media (max-width: 940px){
+    .sideBar h1{
+        display: none;
+    }
+    .sideBar{
+        height: 100%;
+        max-width: 21%;
+        padding: 0.6rem 1.4rem;
+    }
+    .sideBar span{
+        display: none;
+    }
+    #carregarMais{
+        width: 40%;
+    }
+    .homeContent{
+        //width: 100%;
+    }
+    .sideBar ~ .homeContent {
+    //width: calc(100% - 15rem);
+        //left: 25%;
+    }
+    .galleryBanner{
+        width: 500px;
+        flex-direction: column;
+    }
+    .headerNav{
+        width: 150%;
+    }
+}
+@media (max-width: 760px){
+    .sideBar ~ .homeContent {
+    //width: calc(100% - 15rem);
+        left: 25%;
+    }
+    .headerNav{
+        width: 150%;
+        flex-direction: column;
+        height: 15rem;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+    .bannertitle{
+        font-size: 1rem;
+    }
+    .bannertitlep{
+        font-size: 1rem;
+    }
+    .galleryBanner{
+        width: 350px;
+        flex-direction: column;
+    }
+    .bannerTexto{
+        display: none;
+    }
+}
   .galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
@@ -190,29 +281,29 @@ body {
   .galleryBanner {
     margin: auto;
     margin-top: 10rem;
-    width: 90rem;
+      //width: 700%;
+      max-width: 800px;
     height: 30rem;
-
-    /* background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; */
+    flex-direction: row;
+      display: flex;
+      border-radius: 3px;
+      background-color: rgb(152, 69, 211);
+      text-align: center;
+      border: 1px #FFFFFF;
   }
 .headerNav {
     position: fixed;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 14rem;
+    //max-gap: 14rem;
+    justify-content: space-around;
     cursor: pointer;
-
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: white;
     font-weight: 700;
-
     width: calc(100% - 24rem);
     height: 8rem;
     z-index: 100;
-
     background-color: rgb(58, 7, 94);
     border: 2px solid black;
 }
@@ -221,7 +312,6 @@ body {
     justify-content: center;
     align-items: center;
     width: 12rem;
-
     text-transform: uppercase;
 }
 .headerNav a:hover {
@@ -231,4 +321,31 @@ body {
 
     color: var(--white-color);
     background-color: #808080;
+}
+.imagemJogoBanner{
+    height: 30rem;
+    width: 100%;
+}
+.bannertitle{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-shadow: 5px 5px 10px black;
+    cursor: default;
+    text-align: center;
+    //margin-left: 17%;
+}
+.bannertitlep{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+}
+.generoBanner{
+    background: grey;
+    color: #FFFFFF;
+    width: 20%;
+    border-radius: 5px;
+    margin-left: 40%;
+    font-size: 1rem;
 }
