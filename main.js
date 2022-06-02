@@ -45,6 +45,7 @@ var meusFavoritos = [];
 
 //objetos sidebar
 var imagensObj = ["img/home.png", "img/relevancia.png", "img/alfabetica.png", "img/mmo.png", "img/battle.png", "img/card.png", "img/strategy.png", "img/openworld.png"];
+
 var nomeObj = ["HOME", "RELEVÂNCIA", "ALFABÉTICA", "MMORPG", "MOBA", "CARD", "ESTRATEGIA", "OPEN WORLD"];
 
 //objetos header
@@ -54,7 +55,7 @@ var headerObj = ["PC", "Browser", "All", "Favoritos"];
 var nomeCatObj = ["ancHome", "ancRelevancia", "ancAlfabetica", "ancMmorpg", "ancMoba", "ancCard", "ancStrategy", "ancOpenWorld"];
 
 //objetos requests
-var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld];
+var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld, requestPc, requestPcRelevance];
 
 //remove eventListener dos requests de cada categoria
 function removeRequests(nickPage){
@@ -551,24 +552,97 @@ function sideBar() {
     categorias();
 }
 
+function requestPc() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=popularity', options)
+        .then(response => response.json())
+        .then(dados =>{
+
+            todosJogos = dados;
+            console.log(todosJogos);
+            jogosTemp = dados.slice(0+num, 9+num)
+            jogosTemp.forEach((elemento) => {
+                criaCard(elemento);
+                num++
+            })
+        })
+        document.getElementById('carregarMais')
+            .addEventListener('click',requestPc);
+}
+
+//funcao que executa o conteudo da categoria home (quando clicada)
+function pcClick(){
+    var setaAncora = document.querySelector('.PC');
+    setaAncora.addEventListener('click', () => {
+            apagaSecao.innerText= "";
+            var recebeClass = document.querySelector('.removeBotao');
+            recebeClass.style.display = '';
+            var recebeClassBanner = document.querySelector('.galleryBanner');
+            recebeClassBanner.style.display = '';
+            num = 0;
+            removeRequests('requestPc');
+            requestPc();
+        });
+}
+
+function requestPcRelevance() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=relevance', options)
+        .then(response => response.json())
+        .then(dados =>{
+
+            todosJogos = dados;
+            console.log(todosJogos);
+            jogosTemp = dados.slice(0+num, 9+num)
+            jogosTemp.forEach((elemento) => {
+                criaCard(elemento);
+                num++
+            })
+        })
+        document.getElementById('carregarMais')
+            .addEventListener('click',requestPcRelevance);
+}
+
+//funcao que executa o conteudo da categoria home (quando clicada)
+function pcRelevanceClick(){
+    var setaAncora = document.querySelector('.ancRelevancia');
+    setaAncora.addEventListener('click', () => {
+            apagaSecao.innerText= "";
+            var recebeClass = document.querySelector('.removeBotao');
+            recebeClass.style.display = '';
+            var recebeClassBanner = document.querySelector('.galleryBanner');
+            recebeClassBanner.style.display = '';
+            num = 0;
+            removeRequests('requestPcRelevance');
+            requestPcRelevance();
+        });
+}
+
+
 sideBar();
 header();
-
 requestBanner();
-
 requestPopulares();
 homeClick();
-
 relevanciaClick();
-
 alfabeticaClick();
-
 mmoClick();
-
 mobaClick();
-
 cardClick();
-
 strategyClick();
-
 openWorldClick();
+
+pcClick();
+pcRelevanceClick();
