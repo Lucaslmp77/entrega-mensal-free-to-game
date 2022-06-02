@@ -407,7 +407,7 @@ function mobaClick(){
         recebeClassBanner.style.display = '';
         num = 0;
         document.getElementById('carregarMais')
-                .removeEventListener('click',requestPopulares);
+            .removeEventListener('click',requestPopulares);
 
         document.getElementById('carregarMais')
             .removeEventListener('click',requestRelevancia);
@@ -467,7 +467,7 @@ function cardClick(){
         recebeClassBanner.style.display = '';
         num = 0;
         document.getElementById('carregarMais')
-                .removeEventListener('click',requestPopulares);
+            .removeEventListener('click',requestPopulares);
 
         document.getElementById('carregarMais')
             .removeEventListener('click',requestRelevancia);
@@ -528,7 +528,7 @@ function strategyClick(){
         num = 0;
 
         document.getElementById('carregarMais')
-                .removeEventListener('click',requestPopulares);
+            .removeEventListener('click',requestPopulares);
 
         document.getElementById('carregarMais')
             .removeEventListener('click',requestRelevancia);
@@ -589,7 +589,7 @@ function openWorldClick(){
         num = 0;
 
         document.getElementById('carregarMais')
-        .removeEventListener('click',requestPopulares);
+            .removeEventListener('click',requestPopulares);
 
         document.getElementById('carregarMais')
             .removeEventListener('click',requestRelevancia);
@@ -609,7 +609,7 @@ function openWorldClick(){
         document.getElementById('carregarMais')
             .removeEventListener('click',requestStrategy);
 
-            requestOpenWorld();
+        requestOpenWorld();
     })
 }
 
