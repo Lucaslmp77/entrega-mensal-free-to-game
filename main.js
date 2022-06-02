@@ -7,6 +7,29 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=strategy   ====ESTRATÉGIA====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?category=open-world   ====OPEN WORLD====*/ 
 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc   ====PC====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser   ====browser====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games   ====ALL====*/ 
+
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=popularity   ====PC and POPULARITY====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=relevance   ====PC and RELEVANCE====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=alphabetical   ====PC and ALPHABETICAL====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=mmorpg   ====PC and MMORPG====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=moba   ====PC and MOBA====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=card   ====PC and CARD====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=strategy   ====PC and STRATEGY====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=open-world   ====PC and OPEN WORLD====*/
+
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=popularity   ====BROWSER and POPULARITY====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=relevance   ====BROWSER and RELEVANCE====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=alphabetical   ====BROWSER and ALPHABETICAL====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=mmorpg   ====BROWSER and MMORPG====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=moba   ====BROWSER and MOBA====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=card   ====BROWSER and CARD====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=strategy   ====BROWSER and STRATEGY====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=open-world   ====BROWSER and OPEN WORLD====*/
+
+
 //variaveis para consumo da api e carregar mais.
 var jogos = [];
 var num = 0;
