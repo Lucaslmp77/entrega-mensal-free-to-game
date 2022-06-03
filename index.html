@@ -4,29 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banner carrossel</title>
+    <title>Banner Slider</title>
     <link rel="stylesheet" href="style.css">
-    <script src="banner.js" defer></script>
 </head>
 <body>
-    <div class="carrossel-container">
-        <div class="carrossel" id="carrossel">
-            <div class="slide">
-                <img src="img/pubg.jfif" alt="pubg">
-            </div>
-            <div class="slide">
+    <div class="slider">
+        <div class="slides">
+            <!--Botôes Radio-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+             <!--Fim Botôes Radio-->
+
+             <!--Slide images-->
+             <div class="slide first">
+                 <img src="img/pubg.jfif" alt="PUBG">
+             </div>
+             <div class="slide">
                 <img src="img/fortnite.jfif" alt="fortnite">
             </div>
             <div class="slide">
                 <img src="img/minecraft.jfif" alt="minecraft">
             </div>
+            <div class="slide">
+                <img src="img/apex.jfif" alt="apex">
+            </div>
+            <!--Fim Slide images-->
+
+            <!--Navegação automática-->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+            <!--Fim Navegação automática-->
         </div>
-        <button class="seta-esquerda setas" id="esquerda">
-            &leftarrow;
-        </button>
-        <button class="seta-direita setas" id="direita">
-            &rightarrow;
-        </button>
+
+        <!--Navegação Manual-->
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+        </div>
+        <!--Fim Navegação Manual-->
     </div>
 </body>
+<script src="banner.js"></script>
 </html>
