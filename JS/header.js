@@ -1,5 +1,5 @@
 export function runHeader() {
-    var headerObj = ["PC", "Web Browser", "All", "Favoritos"];
+    var headerObj = ["PC", "Browser", "All", "Favoritos"];
     const setaBody = document.querySelector('body')
     const criaNav = document.createElement('nav');
     criaNav.setAttribute('class', 'headerNav');

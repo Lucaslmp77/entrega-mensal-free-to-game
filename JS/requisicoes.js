@@ -36,9 +36,6 @@ var num = 0;
 //variavel para jogos temporarios que aparecem na tela
 var jogosTemp = [];
 
-//limpa tela
-let apagaSecao = document.querySelector('.gallery');
-
 //favoritos
 var meusFavoritos = [];
 
@@ -66,11 +63,11 @@ function requestPopulares() {
             'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
         }
     };
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity', options)
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity', options)
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
+            var todosJogos = dados;
             console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
@@ -78,23 +75,24 @@ function requestPopulares() {
                 num++
             })
         })
-        document.getElementById('carregarMais')
-            .addEventListener('click',requestPopulares);
 }
 
 //funcao que executa o conteudo da categoria home (quando clicada)
-function homeClick(){
+export function homeClick(){
+    let apagaSecao = document.querySelector('.gallery');
     var setaAncora = document.querySelector('.ancHome');
     setaAncora.addEventListener('click', () => {
             apagaSecao.innerText= "";
-            var recebeClass = document.querySelector('.removeBotao');
+            /* var recebeClass = document.querySelector('.removeBotao');
             recebeClass.style.display = '';
             var recebeClassBanner = document.querySelector('.galleryBanner');
-            recebeClassBanner.style.display = '';
+            recebeClassBanner.style.display = ''; */
             num = 0;
             removeRequests('requestPopulares');
             requestPopulares();
         });
+    document.getElementById('carregarMais')
+        .addEventListener('click', requestPopulares);
 }
 
 //Funcao que cria as tags utilizadas em cada card + btn favoritos

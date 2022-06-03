@@ -24,6 +24,38 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+.headerNav {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(28,28,28,.6);
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 700;
+    width: calc(100% - 24rem);
+    left: 24rem;
+    height: 8rem;
+    background-color: #272B30;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    z-index: 10;
+}
+.headerNav a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.headerNav a:hover {
+    transition: all 0.4s ease;
+    border-radius: 1rem;
+    height: 5rem;
+
+    color: var(--white-color);
+    background-color: #808080;
+}
 .sideBar {
     position: fixed;
     top: 0;
@@ -74,6 +106,7 @@ body {
     align-items: center;
     transition: all 0.4s ease;
     border-radius: 1rem;
+    cursor: pointer;
 
     color: var(--white-color);
 }
@@ -118,7 +151,7 @@ body {
     left: calc(100% - 41.9%);
     transform: translate(-50%, -50%);
     text-transform: uppercase;
-    z-index: 10;
+    z-index: 15;
     cursor: pointer;
 
     color: white;
@@ -136,7 +169,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 2rem;
-  }
+}
 .galleryCard {
     background-position: center;
     background-repeat: no-repeat;
@@ -152,7 +185,7 @@ body {
     border-radius: 3px;
 
     background-color: #32383E;
-  }
+}
   .galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
@@ -161,7 +194,7 @@ body {
     text-shadow: 5px 5px 10px black;
     cursor: default;
     text-align: center;
-  }
+}
   .galleryCard:hover {
     width: 130%;
     max-width: 400px;
@@ -172,12 +205,12 @@ body {
 
     color: #FFFFFF;
     background-color: #32383E;
-  }
+}
   .galleryCardBtn:hover {
     text-shadow: none;
 
     color: #A0C55F;
-  }
+}
   .galleryCardBtn {
     padding: 0.6rem 1rem;
     border: none;
@@ -189,7 +222,7 @@ body {
     text-shadow: none;
 
     color: cadetblue;
-  }
+}
   .galleryBanner {
     margin: auto;
     margin-top: 10rem;
@@ -197,38 +230,6 @@ body {
     height: 30rem;
 
     background-size: cover;
-  }
-.headerNav {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-bottom: 1px solid rgba(28,28,28,.6);
-    font-size: 1.8rem;
-    color: white;
-    font-weight: 700;
-    width: calc(100% - 24rem);
-    left: 24rem;
-    height: 8rem;
-    background-color: #272B30;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-}
-.headerNav a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 12rem;
-    cursor: pointer;
-
-    text-transform: uppercase;
-}
-.headerNav a:hover {
-    transition: all 0.4s ease;
-    border-radius: 1rem;
-    height: 5rem;
-
-    color: var(--white-color);
-    background-color: #808080;
 }
 legend{
     font-size: 1rem;
