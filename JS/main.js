@@ -6,5 +6,10 @@ import {
     runHeader
 } from './header.js'
 
-runSideBar();
+import {
+    createHomeContent
+} from './pageBody.js'
+
 runHeader();
+runSideBar();
+createHomeContent();

@@ -1,9 +1,9 @@
 export function runHeader() {
-    var headerObj = ["PC", "Browser", "All", "Favoritos"];
-    const setaHomeContent = document.querySelector('.homeContent');
+    var headerObj = ["PC", "Web Browser", "All", "Favoritos"];
+    const setaBody = document.querySelector('body')
     const criaNav = document.createElement('nav');
     criaNav.setAttribute('class', 'headerNav');
-    setaHomeContent.insertBefore(criaNav, carregarMais);
+    setaBody.appendChild(criaNav);
     for(var i = 0; i < 4; i++){
         const criaA = document.createElement('a');
         criaA.setAttribute('class', headerObj[i]);

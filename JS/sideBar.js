@@ -1,3 +1,10 @@
+function createSideBar() {
+    const setaBody = document.querySelector('body');
+    const criaDiv = document.createElement('div');
+    criaDiv.setAttribute('class', 'sideBar');
+    setaBody.appendChild(criaDiv);
+}
+
 function logo() {
     const setaSideBar = document.querySelector('.sideBar');
     const criaLogoContent = document.createElement('div');
@@ -24,6 +31,7 @@ function categorias() {
     var imagensObj = ["img/home.png", "img/relevancia.png", "img/alfabetica.png", "img/mmo.png", "img/battle.png", "img/card.png", "img/strategy.png", "img/openworld.png"];
     var nomeCatObj = ["ancHome", "ancRelevancia", "ancAlfabetica", "ancMmorpg", "ancMoba", "ancCard", "ancStrategy", "ancOpenWorld"];
     var nomeObj = ["HOME", "RELEVÂNCIA", "ALFABÉTICA", "MMORPG", "MOBA", "CARD", "ESTRATEGIA", "OPEN WORLD"];
+    
     for(var i = 0; i < 8; i++){
         const setaSideBar = document.querySelector('.sideBar');
         const criaUl = document.createElement('ul');
@@ -49,6 +57,7 @@ function categorias() {
 }
 
 export function runSideBar() {
+    createSideBar();
     logo();
     categorias();
 }
