@@ -11,18 +11,18 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser   ====browser====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games   ====ALL====*/ 
 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=popularity   ====PC and POPULARITY====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=relevance   ====PC and RELEVANCE====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=alphabetical   ====PC and ALPHABETICAL====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&sort-by=popularity   ====PC and POPULARITY====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&sort-by=relevance   ====PC and RELEVANCE====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&sort-by=alphabetical   ====PC and ALPHABETICAL====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=mmorpg   ====PC and MMORPG====*/
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=moba   ====PC and MOBA====*/
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=card   ====PC and CARD====*/
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=strategy   ====PC and STRATEGY====*/
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=open-world   ====PC and OPEN WORLD====*/
 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=popularity   ====BROWSER and POPULARITY====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=relevance   ====BROWSER and RELEVANCE====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=alphabetical   ====BROWSER and ALPHABETICAL====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=popularity   ====BROWSER and POPULARITY====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=relevance   ====BROWSER and RELEVANCE====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=alphabetical   ====BROWSER and ALPHABETICAL====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=mmorpg   ====BROWSER and MMORPG====*/
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=moba   ====BROWSER and MOBA====*/
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=card   ====BROWSER and CARD====*/
@@ -39,10 +39,10 @@ var jogosTemp = [];
 //favoritos
 var meusFavoritos = [];
 
-var nomeOption = ["optionHome", "optionRelevancia", "optionHome", "optionHome", "optionHome", "optionHome", "optionHome", "optionHome"];
+var nomeOption = ['optionHome', 'optionRelevancia', 'optionHome', 'optionHome', 'optionHome', 'optionHome', 'optionHome', 'optionHome'];
 
 //objetos requests
-var requests = [requestPopulares];
+var requests = [request];
 
 //remove eventListener dos requests de cada categoria
 function removeRequests(nickPage){
@@ -53,9 +53,19 @@ function removeRequests(nickPage){
         }
     }
 }
+export function plataformLinks() {
+    var plataform = ['', 'platform=pc&', 'platform=browser&'];
+    var category = ['sort-by=popularity', 'sort-by=relevance', 'sort-by=alphabetical', 'category=mmorpg', 'category=moba', 'category=card', 'category=strategy', 'category=open-world'];
 
-//funcao que consome a api da categoria populares
-function requestPopulares() {
+    for(var i = 0; i < 3; i++){
+        for(var j = 0; j < 8; j++){
+            var links = `https://free-to-play-games-database.p.rapidapi.com/api/games?${plataform[i]}${category[j]}`;
+            console.log(links);
+        }
+    }
+}
+
+export function request() {
     const options = {
         method: 'GET',
         headers: {
@@ -63,10 +73,10 @@ function requestPopulares() {
             'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
         }
     };
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity', options)
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity', options)
         .then(response => response.json())
         .then(dados =>{
-
             var todosJogos = dados;
             console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
@@ -88,11 +98,11 @@ export function homeClick(){
             var recebeClassBanner = document.querySelector('.galleryBanner');
             recebeClassBanner.style.display = ''; */
             num = 0;
-            removeRequests('requestPopulares');
-            requestPopulares();
+            removeRequests('request');
+            request('popularity');
         });
     document.getElementById('carregarMais')
-        .addEventListener('click', requestPopulares);
+        .addEventListener('click', request);
 }
 
 //Funcao que cria as tags utilizadas em cada card + btn favoritos
@@ -124,4 +134,4 @@ function criaCard(jogos) {
     criaDiv.appendChild(BotaoFavorito);
 }
 
-requestPopulares();
+request();
