@@ -15,22 +15,26 @@ export function runHeader() {
     }
 }
 
-function werePosition(el){
-    var recebe;
+/* function werePosition(el){
+    var nomesCat = [".ancHome", ".ancRelevancia", ".ancAlfabetica", ".ancMmorpg", ".ancMoba", ".ancCard", ".ancStrategy", ".ancOpenWorld"];
+    var nomesPlat = ['.all', '.pc', '.browser'];
+    var recebePlat;
+    var recebeCat;
     var decisao = document.querySelector(el);
     decisao.addEventListener("click", function () {
         if(decisao) {
-            if(el === '.all'){
-                recebe = 0;
-            }
-            if(el === '.pc'){
-                recebe = 1;
-            }
-            if(el === '.browser'){
-                recebe = 2;
-            }
-            console.log(recebe);
+            for(var j = 0; j < 3; j ++){
+                if(el === nomesPlat[j]){
+                    recebePlat = `${j}`;
+                }
+            } 
+            for(var i = 0; i < 8; i ++){
+                if(el === nomesCat[i]){
+                    recebeCat = `${i}`;
+                }
+            } 
         }
+        console.log(recebePlat, recebeCat);
     });
 }
 
@@ -38,4 +42,13 @@ export function runWere() {
     werePosition('.pc');
     werePosition('.browser');
     werePosition('.all');
-}
+
+    werePosition('.ancHome');
+    werePosition('.ancRelevancia');
+    werePosition('.ancAlfabetica');
+    werePosition('.ancMmorpg');
+    werePosition('.ancMoba');
+    werePosition('.ancCard');
+    werePosition('.ancStrategy');
+    werePosition('.ancOpenWorld');
+} */

@@ -15,17 +15,13 @@ import {
 } from './requisicoes.js'
 
 import {
-    runWere
-} from './header.js'
-
-/* import {
     plataformLinks
-} from './requisicoes.js' */
+} from './requisicoes.js'
 
 runHeader();
 runSideBar();
 createHomeContent();
 request();
 
-runWere();
-/* plataformLinks(); */
+plataformLinks('.pc', '.ancHome');
+plataformLinks('.browser', '.ancRelevancia');

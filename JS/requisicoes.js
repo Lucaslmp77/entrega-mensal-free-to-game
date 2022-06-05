@@ -38,9 +38,38 @@ function removeRequests(nickPage){
     }
 }
 
-/* export function plataformLinks() {
+export function plataformLinks(plat, cat) {
     var plataform = ['', 'platform=pc&', 'platform=browser&'];
     var category = ['sort-by=popularity', 'sort-by=relevance', 'sort-by=alphabetical', 'category=mmorpg', 'category=moba', 'category=card', 'category=strategy', 'category=open-world'];
+
+    var criaA = document.querySelector(plat);
+    criaA.addEventListener("click", function () {
+        if(plat === '.pc'){
+        var positionPlat = 1;
+        console.log(positionPlat);
+        }
+    });
+    var criaB = document.querySelector(cat);
+    criaB.addEventListener("click", function () {
+        if(cat === '.ancHome'){
+        var positionCat = 0;
+        console.log(positionCat);
+        }
+    });
+    var criaC = document.querySelector(plat);
+    criaA.addEventListener("click", function () {
+        if(plat === '.browser'){
+        var positionPlat = 2;
+        console.log(positionPlat);
+        }
+    });
+    var criaD = document.querySelector(cat);
+    criaB.addEventListener("click", function () {
+        if(cat === '.ancRelevancia'){
+        var positionCat = 1;
+        console.log(positionCat);
+        }
+    });
 
     for(var i = 0; i < 3; i++){
         for(var j = 0; j < 8; j++){
@@ -48,7 +77,7 @@ function removeRequests(nickPage){
             console.log(links);
         }
     }
-} */
+}
 
 export function request() {
     const options = {

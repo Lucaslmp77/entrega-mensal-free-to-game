@@ -55,12 +55,12 @@ function categorias() {
         criaA.appendChild(criaSpanA);
     }
     //seleciona fundo vermelho na ancora
-    var descendentes = document.querySelectorAll("li a");
+   /*  var descendentes = document.querySelectorAll("li a");
     for (var i = 0; i < descendentes.length; i++) {
         descendentes[i].addEventListener("click", function (e) {
             this.style.backgroundColor = "red";
         })
-    }
+    } */
 }
 
 export function runSideBar() {
