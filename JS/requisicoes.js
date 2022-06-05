@@ -11,23 +11,7 @@
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser   ====browser====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games   ====ALL====*/ 
 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&sort-by=popularity   ====PC and POPULARITY====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&sort-by=relevance   ====PC and RELEVANCE====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&sort-by=alphabetical   ====PC and ALPHABETICAL====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=mmorpg   ====PC and MMORPG====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=moba   ====PC and MOBA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=card   ====PC and CARD====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=strategy   ====PC and STRATEGY====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=open-world   ====PC and OPEN WORLD====*/
-
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=popularity   ====BROWSER and POPULARITY====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=relevance   ====BROWSER and RELEVANCE====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=alphabetical   ====BROWSER and ALPHABETICAL====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=mmorpg   ====BROWSER and MMORPG====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=moba   ====BROWSER and MOBA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=card   ====BROWSER and CARD====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=strategy   ====BROWSER and STRATEGY====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=open-world   ====BROWSER and OPEN WORLD====*/
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity   ====PC and POPULARITY====*/ 
 
 //variaveis para consumo da api e carregar mais.
 var jogos = [];
@@ -53,7 +37,8 @@ function removeRequests(nickPage){
         }
     }
 }
-export function plataformLinks() {
+
+/* export function plataformLinks() {
     var plataform = ['', 'platform=pc&', 'platform=browser&'];
     var category = ['sort-by=popularity', 'sort-by=relevance', 'sort-by=alphabetical', 'category=mmorpg', 'category=moba', 'category=card', 'category=strategy', 'category=open-world'];
 
@@ -63,7 +48,7 @@ export function plataformLinks() {
             console.log(links);
         }
     }
-}
+} */
 
 export function request() {
     const options = {
@@ -87,23 +72,22 @@ export function request() {
         })
 }
 
-//funcao que executa o conteudo da categoria home (quando clicada)
-export function homeClick(){
+/* export function homeClick(){
     let apagaSecao = document.querySelector('.gallery');
     var setaAncora = document.querySelector('.ancHome');
     setaAncora.addEventListener('click', () => {
             apagaSecao.innerText= "";
-            /* var recebeClass = document.querySelector('.removeBotao');
+            var recebeClass = document.querySelector('.removeBotao');
             recebeClass.style.display = '';
             var recebeClassBanner = document.querySelector('.galleryBanner');
-            recebeClassBanner.style.display = ''; */
+            recebeClassBanner.style.display = '';
             num = 0;
             removeRequests('request');
             request('popularity');
         });
     document.getElementById('carregarMais')
         .addEventListener('click', request);
-}
+} */
 
 //Funcao que cria as tags utilizadas em cada card + btn favoritos
 function criaCard(jogos) {
@@ -133,5 +117,3 @@ function criaCard(jogos) {
     BotaoFavorito.innerHTML = '&#10025;';
     criaDiv.appendChild(BotaoFavorito);
 }
-
-request();

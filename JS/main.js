@@ -11,43 +11,16 @@ import {
 } from './pageBody.js'
 
 import {
-    homeClick
+    request
 } from './requisicoes.js'
 
-import {
+/* import {
     plataformLinks
-} from './requisicoes.js'
-
-function were(element) {
-    var arrow = document.querySelector(element);
-    arrow.onclick = () => {
-        arrow.value = 1;
-        if(element === '.PC' || element === '.Browser'){
-            arrow.value = 2;
-            var guardPlat = element;
-        }
-        else if(arrow.value === 1){
-            var guardCat = element;
-        }
-    }
-}
+} from './requisicoes.js' */
 
 runHeader();
 runSideBar();
 createHomeContent();
-homeClick();
+request();
 
-plataformLinks();
-
-/* were('.PC');
-were('.Browser');
-were('.All');
-
-were('.ancHome');
-were('.ancRelevancia');
-were('.ancAlfabetica');
-were('.ancMmorpg');
-were('.ancMoba');
-were('.ancCard');
-were('.ancStrategy');
-were('.ancOpenWorld'); */
+/* plataformLinks(); */

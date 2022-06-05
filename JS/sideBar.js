@@ -54,6 +54,13 @@ function categorias() {
         criaSpanA.appendChild(document.createTextNode(nomeObj[i]));
         criaA.appendChild(criaSpanA);
     }
+    //seleciona fundo vermelho na ancora
+    var descendentes = document.querySelectorAll("li a");
+    for (var i = 0; i < descendentes.length; i++) {
+        descendentes[i].addEventListener("click", function (e) {
+            this.style.backgroundColor = "red";
+        })
+    }
 }
 
 export function runSideBar() {

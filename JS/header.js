@@ -1,5 +1,5 @@
 export function runHeader() {
-    var headerObj = ["PC", "Browser", "All", "Favoritos"];
+    var headerObj = ["pc", "browser", "all", "favoritos"];
     const setaBody = document.querySelector('body')
     const criaNav = document.createElement('nav');
     criaNav.setAttribute('class', 'headerNav');
@@ -12,5 +12,15 @@ export function runHeader() {
         if(i == 3){
             criaA.setAttribute('onclick', 'favorite()');
         }
+    }
+    var descendentes = document.querySelectorAll(headerObj);
+    for (var i = 0; i < descendentes.length; i++) {
+        descendentes[i].addEventListener("click", function (e) {
+            descendentes.value = 3;
+            if(descendentes[i] === 'pc'){
+                this.style.backgroundColor = "red";
+            }
+            console.log(descendentes.value);
+        })
     }
 }
