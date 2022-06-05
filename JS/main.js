@@ -14,6 +14,10 @@ import {
     request
 } from './requisicoes.js'
 
+import {
+    runWere
+} from './header.js'
+
 /* import {
     plataformLinks
 } from './requisicoes.js' */
@@ -23,4 +27,5 @@ runSideBar();
 createHomeContent();
 request();
 
+runWere();
 /* plataformLinks(); */

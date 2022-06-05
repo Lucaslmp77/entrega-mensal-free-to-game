@@ -59,7 +59,7 @@ export function request() {
         }
     };
 
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity', options)
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&category=open-world ', options)
         .then(response => response.json())
         .then(dados =>{
             var todosJogos = dados;

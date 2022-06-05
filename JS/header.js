@@ -13,14 +13,29 @@ export function runHeader() {
             criaA.setAttribute('onclick', 'favorite()');
         }
     }
-    var descendentes = document.querySelectorAll(headerObj);
-    for (var i = 0; i < descendentes.length; i++) {
-        descendentes[i].addEventListener("click", function (e) {
-            descendentes.value = 3;
-            if(descendentes[i] === 'pc'){
-                this.style.backgroundColor = "red";
+}
+
+function werePosition(el){
+    var recebe;
+    var decisao = document.querySelector(el);
+    decisao.addEventListener("click", function () {
+        if(decisao) {
+            if(el === '.all'){
+                recebe = 0;
             }
-            console.log(descendentes.value);
-        })
-    }
+            if(el === '.pc'){
+                recebe = 1;
+            }
+            if(el === '.browser'){
+                recebe = 2;
+            }
+            console.log(recebe);
+        }
+    });
+}
+
+export function runWere() {
+    werePosition('.pc');
+    werePosition('.browser');
+    werePosition('.all');
 }
