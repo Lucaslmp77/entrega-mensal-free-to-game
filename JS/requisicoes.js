@@ -120,6 +120,7 @@ export function plataformLinks(plat, cat) {
         console.log(positionCat);
         }
     });
+    sortLinks(positionPlat, positionCat);
 }
 
 export function sortLinks(plat, cat) {
