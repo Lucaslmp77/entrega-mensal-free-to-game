@@ -18,7 +18,7 @@ body {
     min-height: 100vh;
     width: 100%;
 
-    background-image: url(img/fundo.jpg);
+    background-color: #2A2E33;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -31,9 +31,9 @@ body {
     height: 100%;
     width: 24rem;
     padding: 0.6rem 1.4rem;
-
-    background-color: rgb(58, 7, 94);
-    border: 2px solid black;
+    border-right: 1px solid rgba(28,28,28,.6);
+    background-color: #272B30;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 .sideBar .logoContent {
     margin-bottom: 8rem;
@@ -99,12 +99,14 @@ body {
     font-weight: 500;
 }
 .homeContent {
+    width: calc(100% - 7.8rem);
     position: absolute;
     min-height: 100%;
 }
 .sideBar ~ .homeContent {
-    width: calc(100% - 24rem);
+    /*width: calc(100% - 24rem);*/
     left: 24rem;
+    width: 80%;
 }
 #carregarMais {
     position: fixed;
@@ -122,9 +124,11 @@ body {
     cursor: pointer;
 
     color: white;
-    background: rgb(58, 7, 94);
+    background: #7A8288;
 }
-
+#carregarMais:hover{
+    background-color: #272B30;
+}
 .gallery {
     display: flex;
     align-items: center;
@@ -138,53 +142,57 @@ body {
 .galleryCard {
     background-position: center;
     background-repeat: no-repeat;
-    width: 31%;
+    /*width: 31%;*/
+    max-width: 350px;
     height: 400px;
     margin-bottom: 4%;
     padding: 3%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    //justify-content: center;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 3px;
-
-    background-color: rgb(152, 69, 211);
+    color: #FFFFFF;
+    background-color: #32383E;
   }
+.galleryCard img{
+    //display: flex;
+    width: 100%;
+}
   .galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
+      color: #7E8083;
     text-shadow: 5px 5px 10px black;
     cursor: default;
     text-align: center;
   }
   .galleryCard:hover {
-    width: 130%;
-    max-width: 400px;
-    transition:width 3s;
+    /*width: 100%;*/
+    max-width: 370px;
+    /*transition:width 3s;*/
     background-size: 90%;
     text-shadow: 5px 5px 10px black;
     filter: grayscale(0%);
 
     color: #FFFFFF;
-    background-color: #272B30;
+    background-color: #32383E;
   }
   .galleryCardBtn:hover {
     text-shadow: none;
-
     color: #A0C55F;
   }
   .galleryCardBtn {
-    padding: 0.6rem 1rem;
+
     border: none;
-    font-size: 2rem;
+    font-size: 3rem;
     text-transform: uppercase;
     transition: 1s;
     transition: color 0.6s;
     cursor: pointer;
     text-shadow: none;
-
     color: cadetblue;
   }
   .galleryBanner {
@@ -198,37 +206,188 @@ body {
     background-size: cover; */
   }
 .headerNav {
+    flex-direction: column;
     position: fixed;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 14rem;
-    cursor: pointer;
-
+    justify-content: space-around;
+    //gap: 14rem;
+    border-bottom: 1px solid rgba(28,28,28,.6);
     font-size: 1.8rem;
     color: white;
     font-weight: 700;
-
     width: calc(100% - 24rem);
+    left: 24rem;
     height: 8rem;
     z-index: 100;
-
-    background-color: rgb(58, 7, 94);
-    border: 2px solid black;
+    background-color: #272B30;
+    //border: 2px solid black;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 .headerNav a{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12rem;
-
+    /*width: 12rem;*/
+    cursor: pointer;
     text-transform: uppercase;
 }
 .headerNav a:hover {
     transition: all 0.4s ease;
-    border-radius: 1rem;
-    height: 5rem;
-
+    border-radius: 0.5rem;
+    height: 2.5rem;
     color: var(--white-color);
     background-color: #808080;
+}
+.ancorasDiv{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#formulario{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
+.divCategorias{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.divCheckboxs{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+#selecione5{
+    background-color: #272B30;
+    color: #FFFFFF;
+    border-color: #7A8288;
+}
+legend{
+    font-size: 1rem;
+}
+.platagenero{
+    /*margin-right: 8%;*/
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 17px;
+    justify-content: space-between;
+
+}
+.Web.Browser{
+    width: 17px;
+    height: 17px;
+    background-image: url("img/browser.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.platagenero div{
+    width: 16px;
+    height: 16px;
+    background-image: url("img/windows.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.desenvolvedor{
+    margin-right: 7%;
+    text-align: center;
+}
+@media (max-width: 1250px){
+    .gallery{
+        display: grid;
+        width: 90%;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+        gap: 2rem;
+    }
+    .galleryCard{
+        display: flex;
+        max-width: 350px;
+        height: 300px;
+    }
+    .headerNav{
+        width: 84%;
+        left: 16%;
+    }
+   .homeContent{
+       left: 0;
+   }
+    .galleryCard:hover{
+        width: 103%;
+    }
+    .sideBar ~ .homeContent {
+        width: calc(100% - 35rem);
+        left: 25%;
+    }
+}
+
+@media (max-width: 940px){
+    .sideBar h1{
+        display: none;
+    }
+    .sideBar{
+        height: 100%;
+        max-width: 16%;
+        padding: 0.6rem 1.4rem;
+    }
+    .sideBar span{
+        display: none;
+    }
+    #carregarMais{
+        width: 40%;
+    }
+    .headerNav{
+        width: 84%;
+        left: 16%;
+    }
+    .sideBar ~ .homeContent {
+        width: calc(100% - 35rem);
+        left: 25%;
+    }
+    /*.galleryCard:hover{
+        width: 103%;
+    }*/
+}
+@media (max-width: 750px){
+    .galleryCard:hover{
+        width: 103%;
+    }
+    #carregarMais{
+        width: 25%;
+    }
+}
+@media (max-width: 1450px){
+    .divCheckboxs{
+        flex-direction: column;
+    }
+    .divCheckboxs div{
+        display: flex;
+        max-width: 150px;
+        height: 20px;
+        align-items: center;
+    }
+    .headerNav{
+        height: 200px;
+    }
+    .divCategorias{
+        flex-direction: column;
+        display: flex;
+    }
+    .homeContent{
+        margin-top: 30%;
+    }
+    .sideBar{
+        max-width: 16%;
+    }
+    .headerNav{
+        max-width: 84%;
+        left: 16%;
+    }
+}
+.FILTRAR{
+    width: 53px;
+    height: 27px;
 }

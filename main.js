@@ -57,6 +57,117 @@ var nomeCatObj = ["ancHome", "ancRelevancia", "ancAlfabetica", "ancMmorpg", "anc
 //objetos requests
 var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld, requestPc, requestPcRelevance];
 
+
+function categoriasdoPCeBrowser(){
+    var form = document.getElementById('formulario');
+    var selecionado2 = document.getElementsByName('selecione');
+    var pc2 = document.getElementById('PC2');
+    var browser2 = document.getElementById('BROWSER2');
+    var mmorpg2 = document.getElementById('MMORPG2');
+    var moba2 = document.getElementById('MOBA2');
+    var card2 = document.getElementById('CARD2');
+    var estrategia2 = document.getElementById('ESTRATEGIA2');
+    var openword2 = document.getElementById('OPENWORD2');
+    var CategoriaPcMMORPG = []
+    var CategoriaPcMoba = []
+    var CategoriaPcCard = []
+    var CategoriaPcEstrategia = []
+    var CategoriaPcOpenword = []
+    var CategoriaBrowserMMORPG = []
+    var CategoriaBrowserMoba = []
+    var CategoriaBrowserCard = []
+    var CategoriaBrowserEstrategia = []
+    var CategoriaBrowserOpenword = []
+    //var TodasCategoriasPC = ['CategoriaPcMMORPG','CategoriaPcMoba','CategoriaPcCard','CategoriaPcOpenword']
+    //var TodasCategoriasBrowser = ['CategoriaBrowserMMORPG','CategoriaBrowserMoba','CategoriaBrowserCard','CategoriaBrowserEstrategia']
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc', options)
+        .then(response => response.json())
+        .then(dados =>{
+
+            var todosJogosPC = dados;
+            CategoriaPcMMORPG = todosJogosPC.filter(element => element.genre === 'MMORPG');
+            CategoriaPcMoba = todosJogosPC.filter(element => element.genre === 'MOBA');
+            CategoriaPcCard = todosJogosPC.filter(element => element.genre === 'Card Game');
+            CategoriaPcEstrategia = todosJogosPC.filter(element => element.genre === 'Strategy');
+
+        })
+    const opcoes = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&category=open-world', opcoes)
+        .then(response => response.json())
+        .then(dados =>{CategoriaPcOpenword = dados;})
+    const opcoesBrowserPc = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser', opcoesBrowserPc)
+        .then(response => response.json())
+        .then(dados =>{
+            const TodosJogosBrowser = dados;
+            CategoriaBrowserMMORPG = TodosJogosBrowser.filter(element => element.genre === 'MMORPG');
+            CategoriaBrowserMoba = TodosJogosBrowser.filter(element => element.genre === 'MOBA');
+            CategoriaBrowserCard = TodosJogosBrowser.filter(element => element.genre === 'Card Game');
+            CategoriaBrowserEstrategia = TodosJogosBrowser.filter(element => element.genre === 'Strategy');
+        })
+    const opcoesBrowserOpen = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=open-world', opcoesBrowserOpen)
+        .then(response => response.json())
+        .then(dados =>{CategoriaBrowserOpenword = dados;})
+
+    form.addEventListener('submit', function(e){
+        if(pc2.selected){
+            apagaSecao.innerHTML="";
+            removeBtn()
+            if(mmorpg2.checked){CategoriaPcMMORPG.forEach((elemento)=>{criaCard(elemento)})}
+            if(moba2.checked){CategoriaPcMoba.forEach((elemento)=>{criaCard(elemento)})}
+            if(card2.checked){CategoriaPcCard.forEach((elemento)=>{criaCard(elemento)})}
+            if(estrategia2.checked){CategoriaPcEstrategia.forEach((elemento)=>{criaCard(elemento)})}
+            if(openword2.checked){CategoriaPcOpenword.forEach((elemento)=>{criaCard(elemento)})}
+        }else if((pc2.selected) &&((mmorpg2.value === ""))){
+            apagaSecao.innerHTML="";
+            removeBtn();
+            todosJogosPC.forEach((elemento)=>{ console.log(elemento); criaCard(elemento)})
+        }
+        if(browser2.selected){
+            apagaSecao.innerHTML="";
+            removeBtn()
+            if(mmorpg2.checked){CategoriaBrowserMMORPG.forEach((elemento)=>{criaCard(elemento)})}
+            if(moba2.checked){CategoriaBrowserMoba.forEach((elemento)=>{criaCard(elemento)})}
+            if(card2.checked){CategoriaBrowserCard.forEach((elemento)=>{criaCard(elemento)})}
+            if(estrategia2.checked){CategoriaBrowserEstrategia.forEach((elemento)=>{criaCard(elemento)})}
+            if(openword2.checked){CategoriaBrowserOpenword.forEach((elemento)=>{criaCard(elemento)})}
+        }else if(browser2.selected){
+            apagaSecao.innerHTML="";
+            removeBtn();
+            TodosJogosBrowser.forEach((elemento)=>{criaCard(elemento)})
+        }
+        e.preventDefault();
+    })
+}
+
+
+
 //remove eventListener dos requests de cada categoria
 function removeRequests(nickPage){
     for(var i = 0; i < requests.length; i++){
@@ -130,19 +241,118 @@ function categorias() {
 
 //funcao para criacao do header (menu nav)
 function header() {
-    const setaHomeContent = document.querySelector('.homeContent');
+    const setaHomeContent = document.getElementById('body')
     const criaNav = document.createElement('nav');
     criaNav.setAttribute('class', 'headerNav');
-    setaHomeContent.insertBefore(criaNav, carregarMais);
+    setaHomeContent.appendChild(criaNav);
+    const criaDiv1 = document.createElement('div');
+    criaDiv1.setAttribute('class','ancorasDiv');
+    criaNav.appendChild(criaDiv1)
     for(var i = 0; i < 4; i++){
         const criaA = document.createElement('a');
         criaA.setAttribute('class', headerObj[i]);
         criaA.appendChild(document.createTextNode(headerObj[i]));
-        criaNav.appendChild(criaA);
+        criaDiv1.appendChild(criaA);
         if(i == 3){
             criaA.setAttribute('onclick', 'favorite()');
         }
     }
+    const criaForm = document.createElement('form');
+    criaForm.setAttribute('id', 'formulario');
+    criaNav.appendChild(criaForm);
+    const criaDivCats = document.createElement('div');
+    criaDivCats.setAttribute('class','divCategorias')
+    criaForm.appendChild(criaDivCats);
+    const criaDiv2 = document.createElement('div');
+    criaDiv2.setAttribute('class','divOptions');
+    criaDivCats.appendChild(criaDiv2);
+    const criaLabel = document.createElement('label');
+    criaLabel.innerHTML="Plataforma: ";
+    criaDiv2.appendChild(criaLabel);
+    const criaSelect = document.createElement('select');
+    criaSelect.setAttribute('id','selecione5');
+    criaSelect.setAttribute('name', 'selecione');
+    criaDiv2.appendChild(criaSelect);
+    const criaOption = document.createElement('option');
+    criaOption.setAttribute('name','selecione');
+    criaOption.setAttribute('selected','')
+    criaOption.setAttribute('disabled','')
+    criaOption.innerHTML="Selecione a plataforma";
+    criaSelect.appendChild(criaOption);
+    const criaOption2 = document.createElement('option');
+    criaOption2.setAttribute('name','selecione');
+    criaOption2.setAttribute('id','PC2');
+    criaOption2.setAttribute('value','1');
+    criaOption2.innerHTML="PC";
+    criaSelect.appendChild(criaOption2)
+    const criaOption3 = document.createElement('option');
+    criaOption3.setAttribute('name','selecione');
+    criaOption3.setAttribute('id','BROWSER2');
+    criaOption3.setAttribute('value','2');
+    criaOption3.innerHTML="BROWSER";
+    criaSelect.appendChild(criaOption3);
+    const criaDiv3 = document.createElement('div');
+    criaDiv3.setAttribute('class','divCheckboxs')
+    criaDivCats.appendChild(criaDiv3);
+    const criaLabel2 = document.createElement('label');
+    criaLabel2.innerHTML="Selecione a categoria: ";
+    criaDiv3.appendChild(criaLabel2);
+    const criaDiv4 = document.createElement('div');
+    criaDiv3.appendChild(criaDiv4);
+    const criaInput = document.createElement('input');
+    criaInput.setAttribute('type','checkbox');
+    criaInput.setAttribute('id','MMORPG2');
+    criaInput.setAttribute('value','1');
+    criaDiv4.appendChild(criaInput);
+    const criaLabel3 = document.createElement('label');
+    criaLabel3.setAttribute('for','MMORPG2');
+    criaLabel3.innerHTML="MMORPG"
+    criaDiv4.appendChild(criaLabel3);
+    const criaDiv5 = document.createElement('div');
+    criaDiv3.appendChild(criaDiv5);
+    const criaInput2 = document.createElement('input');
+    criaInput2.setAttribute('type','checkbox');
+    criaInput2.setAttribute('id','MOBA2');
+    criaDiv5.appendChild(criaInput2);
+    const criaLabel4 = document.createElement('label');
+    criaLabel4.setAttribute('for','MOBA2');
+    criaLabel4.innerHTML="MOBA"
+    criaDiv5.appendChild(criaLabel4);
+    const criaDiv6 = document.createElement('div');
+    criaDiv3.appendChild(criaDiv6);
+    const criaInput3 = document.createElement('input');
+    criaInput3.setAttribute('type','checkbox');
+    criaInput3.setAttribute('id','CARD2');
+    criaDiv6.appendChild(criaInput3);
+    const criaLabel5 = document.createElement('label');
+    criaLabel5.setAttribute('for','CARD2');
+    criaLabel5.innerHTML="CARD"
+    criaDiv6.appendChild(criaLabel5);
+    const criaDiv7 = document.createElement('div');
+    criaDiv3.appendChild(criaDiv7);
+    const criaInput4 = document.createElement('input');
+    criaInput4.setAttribute('type','checkbox');
+    criaInput4.setAttribute('id','ESTRATEGIA2');
+    criaDiv7.appendChild(criaInput4);
+    const criaLabel6 = document.createElement('label');
+    criaLabel6.setAttribute('for','ESTRATEGIA2');
+    criaLabel6.innerHTML="Estratégia"
+    criaDiv7.appendChild(criaLabel6);
+    const criaDiv8 = document.createElement('div');
+    criaDiv3.appendChild(criaDiv8);
+    const criaInput5 = document.createElement('input');
+    criaInput5.setAttribute('type','checkbox');
+    criaInput5.setAttribute('id','OPENWORD2');
+    criaDiv8.appendChild(criaInput5);
+    const criaLabel7 = document.createElement('label');
+    criaLabel7.setAttribute('for','OPENWORD2');
+    criaLabel7.innerHTML="Open Word"
+    criaDiv8.appendChild(criaLabel7);
+    const criaBotao = document.createElement('input');
+    criaBotao.setAttribute('type','submit');
+    criaBotao.setAttribute('value','FILTRAR');
+    criaBotao.setAttribute('class','FILTRAR');
+    criaForm.appendChild(criaBotao);
 }
 
 //funcao que consome a api da categoria populares
@@ -439,7 +649,7 @@ function requestOpenWorld(){
         .then(dados => {
 
             todosJogos = dados;
-            console.log(todosJogos);
+            console.log("open",todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -514,9 +724,27 @@ function criaCard(jogos) {
     criaTitle.innerHTML = jogos.title;
     criaDiv.appendChild(criaTitle);
 
+    const plataEgenero = document.createElement('div');
+    plataEgenero.setAttribute('class', 'platagenero');
+    criaDiv.appendChild(plataEgenero);
+
+    const genero = document.createElement('p');
+    genero.setAttribute('class', 'genero');
+    genero.innerHTML = jogos.genre;
+    plataEgenero.appendChild(genero);
+
+    const desenvolvedor = document.createElement('p');
+    desenvolvedor.setAttribute('class', 'desenvolvedor');
+    desenvolvedor.innerHTML = jogos.developer;
+    plataEgenero.appendChild(desenvolvedor)
+
+    const plataforma = document.createElement('div');
+    plataforma.setAttribute('class', jogos.platform)
+    plataEgenero.appendChild(plataforma);
     const BotaoFavorito = document.createElement('a');
     BotaoFavorito.setAttribute('class', 'galleryCardBtn');
     BotaoFavorito.setAttribute('onclick', `AddFav(${jogos.id})`);
+    BotaoFavorito.setAttribute('id', jogos.id)
     BotaoFavorito.innerHTML = '&#10025;';
     criaDiv.appendChild(BotaoFavorito);
 }
@@ -538,11 +766,22 @@ function favorite(){
 //Funcao que adiciona o jogo aos favoritos e verifica se nao e repetido
 function AddFav(idDoJogo){
     var jogoClicado = jogosTemp.find(element => element.id === idDoJogo)
+
+    console.log(!!meusFavoritos.find(element => element.id === jogoClicado.id))
+    // varifica se ja tem o jogo na lista de favoritos.
+    if(!!meusFavoritos.find(element => element.id === jogoClicado.id)) {
+        //remover o brilho da estrela.
+        const DelBrilhaEstrela = document.getElementById(`${jogoClicado.id}`)
+        DelBrilhaEstrela.style.color = "cadetblue"
+        DelBrilhaEstrela.style.filter = ""
+        meusFavoritos = meusFavoritos.filter(element => element.id !== jogoClicado.id);
+        return;
+    };
+    const brilhaEstrela = document.getElementById(`${jogoClicado.id}`)
+    brilhaEstrela.style.color = "red"
+    brilhaEstrela.style.filter = "brightness(100)"
     console.log("Jogo clicado",jogoClicado)
     meusFavoritos.push(jogoClicado)
-    meusFavoritos = meusFavoritos.filter(function (a) {
-        return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
-    }, Object.create(null))
     console.log("MEUS_FAVORITOS: ",meusFavoritos);
 }
 
@@ -572,8 +811,32 @@ function requestPc() {
                 num++
             })
         })
+    const selecionanav = document.querySelector('.headerNav')
+    let criaelement = document.createElement("fieldset")
+    criaelement.setAttribute('class', 'fieldset')
+    selecionanav.appendChild(criaelement)
+    const crialegend=document.createElement('legend')
+    crialegend.innerHTML = "Seleciona um gênero em PC"
+    criaelement.appendChild(crialegend)
+    nomeObj.forEach((categoria) =>{
+        const criadiv = document.createElement('div')
+        criaelement.appendChild(criadiv)
+        const criainput = document.createElement('input')
+        criainput.setAttribute('type', 'radio')
+        criainput.setAttribute('id', categoria)
+        criainput.setAttribute('name', 'caixa')
+        criadiv.appendChild(criainput)
+        const crialabel = document.createElement('label')
+        crialabel.setAttribute('for', categoria)
+        crialabel.innerHTML = categoria
+        criadiv.appendChild(crialabel)
+    })
         document.getElementById('carregarMais')
             .addEventListener('click',requestPc);
+    const check = document.getElementById('ESTRATEGIA')
+    check.addEventListener('click', () =>{
+        requestPcRelevance()
+    })
 }
 
 //funcao que executa o conteudo da categoria home (quando clicada)
@@ -646,3 +909,4 @@ openWorldClick();
 
 pcClick();
 pcRelevanceClick();
+categoriasdoPCeBrowser()
