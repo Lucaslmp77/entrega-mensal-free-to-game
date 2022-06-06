@@ -29,7 +29,7 @@ function logo() {
 
 function categorias() {
     var imagensObj = ["img/home.png", "img/relevancia.png", "img/alfabetica.png", "img/mmo.png", "img/battle.png", "img/card.png", "img/strategy.png", "img/openworld.png"];
-    var nomeCatObj = ["ancHome", "ancRelevancia", "ancAlfabetica", "ancMmorpg", "ancMoba", "ancCard", "ancStrategy", "ancOpenWorld"];
+    var nomeCatObj = ["ancHome active", "ancRelevancia", "ancAlfabetica", "ancMmorpg", "ancMoba", "ancCard", "ancStrategy", "ancOpenWorld"];
     var nomeObj = ["HOME", "RELEVÂNCIA", "ALFABÉTICA", "MMORPG", "MOBA", "CARD", "ESTRATEGIA", "OPEN WORLD"];
     
     for(var i = 0; i < 8; i++){
@@ -54,13 +54,13 @@ function categorias() {
         criaSpanA.appendChild(document.createTextNode(nomeObj[i]));
         criaA.appendChild(criaSpanA);
     }
-    //seleciona fundo vermelho na ancora
-   /*  var descendentes = document.querySelectorAll("li a");
-    for (var i = 0; i < descendentes.length; i++) {
-        descendentes[i].addEventListener("click", function (e) {
-            this.style.backgroundColor = "red";
-        })
-    } */
+    let seta = document.querySelectorAll('li a');
+    seta.forEach(a => {
+        a.addEventListener('click', function () {
+            seta.forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 }
 
 export function runSideBar() {

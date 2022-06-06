@@ -236,3 +236,14 @@ body {
 legend{
     font-size: 1rem;
 }
+
+/* classes ativas */
+.headerNav .activeHead, a:hover {
+    background-color: rgb(236, 16, 89) !important;
+    color: white;
+}
+
+.sideBar .active, a:hover {
+    background-color: rgb(236, 16, 89) !important;
+    color: white;
+}

@@ -15,7 +15,7 @@ import {
 } from './requisicoes.js'
 
 import {
-    plataformLinks
+    sortLinks
 } from './requisicoes.js'
 
 runHeader();
@@ -23,11 +23,4 @@ runSideBar();
 createHomeContent();
 request();
 
-plataformLinks('.all', '.ancHome');
-plataformLinks('.pc', '.ancRelevancia');
-plataformLinks('.browser', '.ancAlfabetica');
-plataformLinks('.all', '.ancMmorpg');
-plataformLinks('.all', '.ancMoba');
-plataformLinks('.all', '.ancCard');
-plataformLinks('.all', '.ancStrategy');
-plataformLinks('.all', '.ancOpenWorld');
+sortLinks();
