@@ -23,5 +23,11 @@ runSideBar();
 createHomeContent();
 request();
 
-plataformLinks('.pc', '.ancHome');
-plataformLinks('.browser', '.ancRelevancia');
+plataformLinks('.all', '.ancHome');
+plataformLinks('.pc', '.ancRelevancia');
+plataformLinks('.browser', '.ancAlfabetica');
+plataformLinks('.all', '.ancMmorpg');
+plataformLinks('.all', '.ancMoba');
+plataformLinks('.all', '.ancCard');
+plataformLinks('.all', '.ancStrategy');
+plataformLinks('.all', '.ancOpenWorld');
