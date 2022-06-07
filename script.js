@@ -14,6 +14,8 @@ var meusFavoritos = [];
 //objetos requests
 var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld, RequestBrowser, RequestPc, RequestAll];
 
+let count = 1;
+
 //variaveis categorias para pc
 var CategoriaPcPopulares = []
 var CategoriaPcRelevancia = []
@@ -523,33 +525,6 @@ function openWorldClick(){
     })
 }
 
-//Funcao que consome a categoria que sera visualizada no banner
-const requestBanner = async() => {
-    const optionsBanner = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-            'X-RapidAPI-Key': '634d00049amsh9a4631d4d411797p170e5djsndf01e8892ac6'
-        }
-    };
-    const pegaUrl = 'https://free-to-play-games-database.p.rapidapi.com/api/games?category=open-world';
-    fetch(pegaUrl, optionsBanner)
-    const recebeDados = await fetch(pegaUrl);
-    const jogosBanner = await recebeDados.json();
-
-    var recebeJogoBanner = jogosBanner[1];
-    criaBanner(recebeJogoBanner);
-}
-
-//Funcao que cria as tags do banner e insere a imagem retornada da api
-function criaBanner(jogosBanner) {
-    const setaDiv = document.querySelector('.homeContent');
-    const criaBanner = document.createElement('div');
-    criaBanner.setAttribute('class', 'galleryBanner');
-    criaBanner.style.backgroundImage=`url(${jogosBanner.thumbnail})`;
-    setaDiv.insertBefore(criaBanner, carregarMais);
-}
-
 //Funcao que cria as tags utilizadas em cada card + btn favoritos
 function criaCard(jogos) {
     const setaDiv = document.querySelector('.gallery');
@@ -643,7 +618,6 @@ function AllClick(){
     });
 }
 
-/* ----------------------------------------------------------------------------------------------------------------------------------- */
 //remove eventListener dos requests de cada categoria
 function removeRequests(nickPage){
     for(var i = 0; i < requests.length; i++){
@@ -695,7 +669,7 @@ function RequestAll() {
         })
         document.getElementById('carregarMais')
             .addEventListener('click',RequestPc);
-    }
+}
 function pcClick(){
     var setaAncora = document.querySelector('.PC');
     setaAncora.addEventListener('click', () => {
@@ -719,16 +693,50 @@ function RequestPc() {
     document.getElementById('carregarMais')
         .addEventListener('click',RequestPc);
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------- */
 
-//remove eventListener dos requests de cada categoria
-function removeRequests(nickPage){
-    for(var i = 0; i < requests.length; i++){
-        if(requests[i] !== nickPage){
-            document.getElementById('carregarMais')
-                .removeEventListener('click',requests[i]);
-        }
+document.getElementById("radio1").checked = true
+
+setInterval(function(){
+    nextImage();
+},4000)
+
+function nextImage() {
+    count++;
+    if(count > 4) {
+        count = 1;
     }
+
+    document.getElementById("radio"+count).checked = true
+}
+function RequestImgBanner(){
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity', options)
+        .then(response => response.json())
+        .then(dados =>{
+            jogosTemp = dados.slice(10, 14)
+            var numero = Number(0)
+            jogosTemp.forEach((elemento) =>{
+                numero++;
+                InsertImgBanner(elemento, numero);
+            })
+        })
+}
+function InsertImgBanner(jogo, numero){
+    const DivSlides = document.querySelector('.slides');
+    var DivImg1 = document.querySelector(`#img${numero}`);
+    const img1 = document.createElement('img');
+    img1.src= jogo.thumbnail;
+    const tagA = document.createElement('a');
+    tagA.setAttribute ('href', jogo.freetogame_profile_url);
+    tagA.setAttribute('target', '_blank');
+    DivImg1.appendChild(tagA);
+    tagA.appendChild(img1);
 }
 
 //remove botao carregar mais
@@ -743,7 +751,6 @@ function removeBanner() {
     recebeClass.style.display = 'none';
 }
 
-/* requestBanner(); */
 requestPopulares();
 homeClick();
 relevanciaClick();
@@ -758,3 +765,4 @@ pcClick();
 categoriasdoPCeBrowser();
 BrowserClick();
 AllClick();
+RequestImgBanner();

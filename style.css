@@ -74,6 +74,7 @@ body {
     align-items: center;
     transition: all 0.4s ease;
     border-radius: 1rem;
+    cursor: pointer;
 
     color: var(--white-color);
 }
@@ -214,7 +215,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*width: 12rem;*/
     cursor: pointer;
     text-transform: uppercase;
 }
@@ -257,7 +257,6 @@ legend{
     font-size: 1rem;
 }
 .platagenero{
-    /*margin-right: 8%;*/
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -299,17 +298,11 @@ legend{
         max-width: 350px;
         height: 300px;
     }
-    /*.headerNav{
-        max-width: 100%;
-
-    }*/
    .homeContent{
        left: 0;
-       margin-top: 15%;
+       padding-top: 0%;
+       
    }
-    .galleryCard:hover{
-        /*width: 103%;*/
-    }
     .sideBar ~ .homeContent {
         width: calc(100% - 35rem);
         left: 25%;
@@ -321,7 +314,7 @@ legend{
 
 @media (max-width: 940px){
     .galleryBanner{
-        max-width: 120%;
+        display: none;
     }
     .sideBar h1{
         display: none;
@@ -337,28 +330,17 @@ legend{
     #carregarMais{
         width: 40%;
     }
-    /*.headerNav{
-        width: 90%;
-        left: 16%;
-    }*/
     .sideBar ~ .homeContent {
         width: calc(100% - 35rem);
         left: 25%;
     }
-    /*.galleryCard:hover{
-        width: 103%;
-    }*/
     .homeContent{
         left: 0;
-        margin-top: 15%;
+        padding-top: 30%;
     }
 }
 @media (max-width: 750px){
-    .galleryBanner{
-        max-width: 140%;
-    }
     .galleryCard:hover{
-        /*width: 103%;*/
         background: #7A8288;
     }
     .galleryCardTitle{
@@ -368,8 +350,8 @@ legend{
         width: 25%;
     }
     .homeContent{
-        margin-top: 25%;
         height: 100%;
+        margin-top: 30%;
     }
 }
 @media (max-width: 1450px){
@@ -383,7 +365,7 @@ legend{
         align-items: center;
     }
     .headerNav{
-        height: 210px;
+        height: 240px;
         width: 100%;
         left: 16%;
     }
@@ -396,7 +378,7 @@ legend{
         display: flex;
     }
     .homeContent{
-        margin-top: 10%;
+        margin-top: 12%;
     }
     .sideBar{
         max-width: 16%;
@@ -412,10 +394,10 @@ legend{
         height: 30%;
     }
     .homeContent{
-        margin-top: 25%;
+        margin-top: 35%;
     }
 }
-@media (max-width: 400px){
+@media (max-width: 480px){
     .galleryBanner{
         min-width: 500%;
         max-width: 600%;
@@ -423,7 +405,7 @@ legend{
     }
     .homeContent{
         height: 100%;
-        margin-top: 15%;
+        margin-top: 25%;
     }
     .headerNav{
         max-width: 84%;
@@ -434,4 +416,124 @@ legend{
 .FILTRAR{
     width: 53px;
     height: 27px;
+}
+
+/* ---------------------------------BANER------------------------------ */
+
+.slider {
+    margin: 0 auto;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slides {
+    width: 100%;
+    height: 400px;
+    display: flex;
+}
+
+.slides input {
+    display: none;
+}
+
+.slide {
+    width: 100%;
+    position: relative;
+    transition: 2s;
+}
+
+.slide img {
+    width: 600px;
+    height: 300px;
+}
+.titleGameBanner{
+    position: absolute;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+    font-weight: 600;
+    color: #7E8083;
+    text-shadow: 5px 5px 10px black;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.manual-navigation {
+    position: absolute;
+    width: 600px;
+    margin-top: -130px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn {
+    border: 2px solid #FFFFFF;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn:not(:last-child) {
+    margin-right: 15px;
+}
+
+.manual-btn:hover {
+    background-color: #FFFFFF;
+}
+
+#radio1:checked ~ .first {
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+    margin-left: -100%;
+}
+
+#radio3:checked ~ .first {
+    margin-left: -200%;
+}
+
+#radio4:checked ~ .first {
+    margin-left: -300%;
+}
+
+.navigation-auto div {
+    border: 2px solid #20a6ff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.navigation-auto {
+    position: absolute;
+    width: 600px;
+    margin-top: +270px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-auto div:not(:last-child) {
+    margin-right: 15px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+    background-color: #FFFFFF;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+    background-color: #FFFFFF;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+    background-color: #FFFFFF;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+    background-color: #FFFFFF;
 }
