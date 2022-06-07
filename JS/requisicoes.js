@@ -60,6 +60,23 @@ export function request(url) {
         })
 }
 
+/* export function homeClick(){
+    let apagaSecao = document.querySelector('.gallery');
+
+    setaAncora.addEventListener('click', () => {
+            apagaSecao.innerText= "";
+            var recebeClass = document.querySelector('.removeBotao');
+            recebeClass.style.display = '';
+            var recebeClassBanner = document.querySelector('.galleryBanner');
+            recebeClassBanner.style.display = '';
+            num = 0;
+            removeRequests('request');
+            request('popularity');
+        });
+    document.getElementById('carregarMais')
+        .addEventListener('click', request);
+} */
+
 //Funcao que cria as tags utilizadas em cada card + btn favoritos
 function criaCard(jogos) {
     const setaDiv = document.querySelector('.gallery');

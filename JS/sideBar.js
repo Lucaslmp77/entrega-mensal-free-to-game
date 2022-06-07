@@ -68,12 +68,14 @@ function categorias() {
                 setCategory = 'sort-by=popularity';
                 apagaSecao.innerText= ""
                 console.log(setCategory);
+                num = 0;
             }
             else if(a.classList.value === 'ancRelevancia active'){
                 setCategory = 'sort-by=relevance';
                 let apagaSecao = document.querySelector('.gallery');
                 apagaSecao.innerText= ""
                 console.log(setCategory);
+                num = 0;
             }
             else if(a.classList.value === 'ancAlfabetica active'){
                 setCategory = 'sort-by=alphabetical';
@@ -111,13 +113,15 @@ function categorias() {
                 apagaSecao.innerText= ""
                 console.log(setCategory);
             }
-            var url = `https://free-to-play-games-database.p.rapidapi.com/api/games?${setCategory}`;
+            url = `https://free-to-play-games-database.p.rapidapi.com/api/games?${setCategory}`;
             request(url);
         });
     });
 }
 
-var setCategory;
+var setCategory = 'sort-by=popularity';
+var url = `https://free-to-play-games-database.p.rapidapi.com/api/games?${setCategory}`;
+request(url);
 
 export function runSideBar() {
     createSideBar();

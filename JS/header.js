@@ -35,4 +35,4 @@ export function runHeader() {
     });
 }
 
-var plataforma;
+var plataforma = 0;
