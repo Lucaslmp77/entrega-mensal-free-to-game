@@ -13,33 +13,35 @@ var meusFavoritos = [];
 
 //objetos requests
 var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld, RequestBrowser, RequestPc, RequestAll];
-
+//variavel auxiliar BANNER
 let count = 1;
 
-//variaveis categorias para pc
-var CategoriaPcPopulares = []
-var CategoriaPcRelevancia = []
-var CategoriaPcAlfabetica = []
-var CategoriaPcMMORPG = []
-var CategoriaPcMoba = []
-var CategoriaPcCard = []
-var CategoriaPcEstrategia = []
-var CategoriaPcOpenword = []
-//variaveis categorias para browser
-var CategoriaBrowserPopulares = []
-var CategoriaBrowserRelevancia = []
-var CategoriaBrowserAlfabetica = []
-var CategoriaBrowserMMORPG = []
-var CategoriaBrowserMoba = []
-var CategoriaBrowserCard = []
-var CategoriaBrowserEstrategia = []
-var CategoriaBrowserOpenword = []
 //variaveis plataformas
 var todosJogosPC = []
 var TodosJogosBrowser = []
 var AllApi = []
 
+/* =====================================================CATEGORIAS PC E BROWSER========================================================== */
 function categoriasdoPCeBrowser(){
+    //variaveis categorias para pc
+    var CategoriaPcPopulares = []
+    var CategoriaPcRelevancia = []
+    var CategoriaPcAlfabetica = []
+    var CategoriaPcMMORPG = []
+    var CategoriaPcMoba = []
+    var CategoriaPcCard = []
+    var CategoriaPcEstrategia = []
+    var CategoriaPcOpenword = []
+    //variaveis categorias para browser
+    var CategoriaBrowserPopulares = []
+    var CategoriaBrowserRelevancia = []
+    var CategoriaBrowserAlfabetica = []
+    var CategoriaBrowserMMORPG = []
+    var CategoriaBrowserMoba = []
+    var CategoriaBrowserCard = []
+    var CategoriaBrowserEstrategia = []
+    var CategoriaBrowserOpenword = []
+
     var form = document.getElementById('formulario');
     var pc2 = document.getElementById('PC2');
     var browser2 = document.getElementById('BROWSER2');
@@ -118,8 +120,6 @@ function categoriasdoPCeBrowser(){
     .then(response => response.json())
     .then(dados =>{CategoriaPcAlfabetica = dados;})
 
-    /* -------------------------------------------------------------------------------------------------------------------------- */
-
     const opcoesBrowserPopularity = {
         method: 'GET',
         headers: {
@@ -128,7 +128,7 @@ function categoriasdoPCeBrowser(){
         }
     };
 
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity', opcoesBrowserPopularity)
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=popularity', opcoesBrowserPopularity)
     .then(response => response.json())
     .then(dados =>{CategoriaBrowserPopulares = dados;})
 
@@ -140,7 +140,7 @@ function categoriasdoPCeBrowser(){
         }
     };
 
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=relevance', opcoesBrowserRelevance)
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=relevance', opcoesBrowserRelevance)
     .then(response => response.json())
     .then(dados =>{CategoriaBrowserRelevancia = dados;})
 
@@ -152,7 +152,7 @@ function categoriasdoPCeBrowser(){
         }
     };
 
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=alphabetical', opcoesBrowserAlfabet)
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=alphabetical', opcoesBrowserAlfabet)
     .then(response => response.json())
     .then(dados =>{CategoriaBrowserAlfabetica = dados;})
     
@@ -222,7 +222,7 @@ function categoriasdoPCeBrowser(){
         e.preventDefault();
     })
 }
-
+/* ===================================================REQUISIÇÕES DE CATEGORIAS SEM PLATAFORMA================================================== */
 function requestPopulares() {
     const options = {
         method: 'GET',
@@ -244,7 +244,7 @@ function requestPopulares() {
     document.getElementById('carregarMais')
         .addEventListener('click',requestPopulares);
 }
-
+//funcao que executa o conteudo da categoria popularidade (quando clicada)
 function homeClick(){
     var setaAncora = document.querySelector('.ancHome');
     setaAncora.addEventListener('click', () => {
@@ -598,12 +598,14 @@ function AddFav(idDoJogo){
         meusFavoritos = meusFavoritos.filter(element => element.id !== jogoClicado.id);
         return;
     };
+//Design estrela do favoritos
     const brilhaEstrela = document.getElementById(`${jogoClicado.id}`)
     brilhaEstrela.style.color = "red"
     brilhaEstrela.style.filter = "brightness(100)"
     meusFavoritos.push(jogoClicado)
 }
 
+//Funcao que executa o conteudo do botao ALL quando clicado (consome a api geral)
 function AllClick(){
     var setaAncora = document.querySelector('.All');
     setaAncora.addEventListener('click', () => {
@@ -627,16 +629,7 @@ function removeRequests(nickPage){
         }
     }
 }
-function RequestAll(){
-    var jogosTempApi = []
-    jogosTempApi = AllApi.slice(0+num, 9+num)
-    jogosTempApi.forEach((elemento) => {
-        criaCard(elemento);
-        num++
-    })
-    document.getElementById('carregarMais')
-        .addEventListener('click',RequestAll);
-}
+//Funcao que executa o conteudo do botao BROWSER quando clicado (todos jogos para browser)
 function BrowserClick(){
     var setaAncora = document.querySelector('.Browser');
     setaAncora.addEventListener('click', () => {
@@ -650,6 +643,7 @@ function BrowserClick(){
         RequestBrowser()
     });
 }
+//Funcao que executa o conteudo do browser
 function RequestBrowser(){
     var jogosTempBrowser = []
     jogosTempBrowser = TodosJogosBrowser.slice(0+num, 9+num)
@@ -660,6 +654,7 @@ function RequestBrowser(){
     document.getElementById('carregarMais')
         .addEventListener('click',RequestBrowser);
 }
+//Funcao que executa o conteudo de toda api
 function RequestAll() {
         var jogosTempPc = []
         jogosTempPc = todosJogosPC.slice(0+num, 9+num)
@@ -670,6 +665,7 @@ function RequestAll() {
         document.getElementById('carregarMais')
             .addEventListener('click',RequestPc);
 }
+//Funcao que executa o conteudo do botao pc quando clicado
 function pcClick(){
     var setaAncora = document.querySelector('.PC');
     setaAncora.addEventListener('click', () => {
@@ -683,6 +679,7 @@ function pcClick(){
         RequestPc();
     });
 }
+//Funcao que executa o conteudo do botao pc
 function RequestPc() {
     var jogosTempPc = []
     jogosTempPc = todosJogosPC.slice(0+num, 9+num)
@@ -693,7 +690,7 @@ function RequestPc() {
     document.getElementById('carregarMais')
         .addEventListener('click',RequestPc);
 }
-
+/* =====================================================BANNER========================================================== */
 document.getElementById("radio1").checked = true
 
 setInterval(function(){
@@ -738,7 +735,7 @@ function InsertImgBanner(jogo, numero){
     DivImg1.appendChild(tagA);
     tagA.appendChild(img1);
 }
-
+/* =================================================REMOVE BANNER E BOTAO CARREGAR MAIS========================================================== */
 //remove botao carregar mais
 function removeBtn() {
     var recebeClass = document.querySelector('.removeBotao');
@@ -750,7 +747,8 @@ function removeBanner() {
     var recebeClass = document.querySelector('.galleryBanner');
     recebeClass.style.display = 'none';
 }
-
+/* =====================================================FUNÇÕES A SEREM EXECUTADAS========================================================== */
+categoriasdoPCeBrowser();
 requestPopulares();
 homeClick();
 relevanciaClick();
@@ -760,9 +758,7 @@ mobaClick();
 cardClick();
 strategyClick();
 openWorldClick();
-categoriasdoPCeBrowser();
 pcClick();
-categoriasdoPCeBrowser();
 BrowserClick();
 AllClick();
 RequestImgBanner();

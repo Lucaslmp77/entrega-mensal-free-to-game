@@ -129,6 +129,7 @@ body {
 #carregarMais:hover{
     background-color: #272B30;
 }
+/* ---------------------------------GALLERY HOMECONTENT------------------------------ */
 .gallery {
     display: flex;
     align-items: center;
@@ -155,15 +156,15 @@ body {
 .galleryCard img{
     width: 100%;
 }
-  .galleryCardTitle {
+.galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
-      color: #7E8083;
+        color: #7E8083;
     text-shadow: 5px 5px 10px black;
     cursor: default;
     text-align: center;
-  }
-  .galleryCard:hover {
+}
+.galleryCard:hover {
     max-width: 360px;
     background-size: 90%;
     text-shadow: 5px 5px 10px black;
@@ -171,12 +172,12 @@ body {
 
     color: #FFFFFF;
     background-color: #32383E;
-  }
-  .galleryCardBtn:hover {
+}
+.galleryCardBtn:hover {
     text-shadow: none;
     color: #A0C55F;
-  }
-  .galleryCardBtn {
+}
+.galleryCardBtn {
 
     border: none;
     font-size: 3rem;
@@ -186,14 +187,14 @@ body {
     cursor: pointer;
     text-shadow: none;
     color: cadetblue;
-  }
-  .galleryBanner {
+}
+.galleryBanner {
     margin: auto;
     margin-top: 10rem;
     width: 90rem;
     height: 30rem;
 
-  }
+}
 .headerNav {
     flex-direction: column;
     position: fixed;
@@ -283,6 +284,7 @@ legend{
     margin-right: 7%;
     text-align: center;
 }
+/* ---------------------------------MEDIAS------------------------------ */
 @media (max-width: 1250px){
     .galleryBanner{
         max-width: 100%;
@@ -311,7 +313,6 @@ legend{
         flex-direction: column;
     }
 }
-
 @media (max-width: 940px){
     .galleryBanner{
         display: none;
@@ -414,12 +415,15 @@ legend{
     }
 }
 .FILTRAR{
-    width: 53px;
+    width: 60px;
     height: 27px;
+    border: 2px solid #FFFFFF   ;
+    border-radius: 5px;
+    background-color: #32383E;
+    color: #FFFFFF;
+    cursor: pointer;
 }
-
 /* ---------------------------------BANER------------------------------ */
-
 .slider {
     margin: 0 auto;
     width: 600px;
