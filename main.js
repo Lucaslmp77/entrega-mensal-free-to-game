@@ -78,6 +78,8 @@ function categoriasdoPCeBrowser(){
     var CategoriaBrowserCard = []
     var CategoriaBrowserEstrategia = []
     var CategoriaBrowserOpenword = []
+    var todosJogosPC = []
+    var TodosJogosBrowser = []
     //var TodasCategoriasPC = ['CategoriaPcMMORPG','CategoriaPcMoba','CategoriaPcCard','CategoriaPcOpenword']
     //var TodasCategoriasBrowser = ['CategoriaBrowserMMORPG','CategoriaBrowserMoba','CategoriaBrowserCard','CategoriaBrowserEstrategia']
     const options = {
@@ -91,7 +93,7 @@ function categoriasdoPCeBrowser(){
         .then(response => response.json())
         .then(dados =>{
 
-            var todosJogosPC = dados;
+            todosJogosPC = dados;
             CategoriaPcMMORPG = todosJogosPC.filter(element => element.genre === 'MMORPG');
             CategoriaPcMoba = todosJogosPC.filter(element => element.genre === 'MOBA');
             CategoriaPcCard = todosJogosPC.filter(element => element.genre === 'Card Game');
@@ -118,7 +120,7 @@ function categoriasdoPCeBrowser(){
     fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser', opcoesBrowserPc)
         .then(response => response.json())
         .then(dados =>{
-            const TodosJogosBrowser = dados;
+            TodosJogosBrowser = dados;
             CategoriaBrowserMMORPG = TodosJogosBrowser.filter(element => element.genre === 'MMORPG');
             CategoriaBrowserMoba = TodosJogosBrowser.filter(element => element.genre === 'MOBA');
             CategoriaBrowserCard = TodosJogosBrowser.filter(element => element.genre === 'Card Game');
@@ -139,15 +141,11 @@ function categoriasdoPCeBrowser(){
         if(pc2.selected){
             apagaSecao.innerHTML="";
             removeBtn()
-            if(mmorpg2.checked){CategoriaPcMMORPG.forEach((elemento)=>{criaCard(elemento)})}
+            if(mmorpg2.checked){CategoriaPcMMORPG.forEach((elemento)=>{ criaCard(elemento)})}
             if(moba2.checked){CategoriaPcMoba.forEach((elemento)=>{criaCard(elemento)})}
             if(card2.checked){CategoriaPcCard.forEach((elemento)=>{criaCard(elemento)})}
             if(estrategia2.checked){CategoriaPcEstrategia.forEach((elemento)=>{criaCard(elemento)})}
             if(openword2.checked){CategoriaPcOpenword.forEach((elemento)=>{criaCard(elemento)})}
-        }else if((pc2.selected) &&((mmorpg2.value === ""))){
-            apagaSecao.innerHTML="";
-            removeBtn();
-            todosJogosPC.forEach((elemento)=>{ console.log(elemento); criaCard(elemento)})
         }
         if(browser2.selected){
             apagaSecao.innerHTML="";
@@ -157,10 +155,6 @@ function categoriasdoPCeBrowser(){
             if(card2.checked){CategoriaBrowserCard.forEach((elemento)=>{criaCard(elemento)})}
             if(estrategia2.checked){CategoriaBrowserEstrategia.forEach((elemento)=>{criaCard(elemento)})}
             if(openword2.checked){CategoriaBrowserOpenword.forEach((elemento)=>{criaCard(elemento)})}
-        }else if(browser2.selected){
-            apagaSecao.innerHTML="";
-            removeBtn();
-            TodosJogosBrowser.forEach((elemento)=>{criaCard(elemento)})
         }
         e.preventDefault();
     })
@@ -209,7 +203,7 @@ function logo() {
 
     const criaH1Logo = document.createElement('h1');
     criaH1Logo.setAttribute('class', 'logoName');
-    criaH1Logo.appendChild(document.createTextNode("SÓ A NATA"));
+    criaH1Logo.appendChild(document.createTextNode("GAME TO ESTUDENT"));
     setaLogo.appendChild(criaH1Logo);
 }
 
@@ -282,7 +276,7 @@ function header() {
     const criaOption2 = document.createElement('option');
     criaOption2.setAttribute('name','selecione');
     criaOption2.setAttribute('id','PC2');
-    criaOption2.setAttribute('value','1');
+    criaOption2.setAttribute('value','');
     criaOption2.innerHTML="PC";
     criaSelect.appendChild(criaOption2)
     const criaOption3 = document.createElement('option');
@@ -302,10 +296,11 @@ function header() {
     const criaInput = document.createElement('input');
     criaInput.setAttribute('type','checkbox');
     criaInput.setAttribute('id','MMORPG2');
-    criaInput.setAttribute('value','1');
+    criaInput.setAttribute('value','1')
     criaDiv4.appendChild(criaInput);
     const criaLabel3 = document.createElement('label');
     criaLabel3.setAttribute('for','MMORPG2');
+
     criaLabel3.innerHTML="MMORPG"
     criaDiv4.appendChild(criaLabel3);
     const criaDiv5 = document.createElement('div');
@@ -348,11 +343,13 @@ function header() {
     criaLabel7.setAttribute('for','OPENWORD2');
     criaLabel7.innerHTML="Open Word"
     criaDiv8.appendChild(criaLabel7);
+    const divBotao = document.createElement('div')
+    criaForm.appendChild(divBotao)
     const criaBotao = document.createElement('input');
     criaBotao.setAttribute('type','submit');
     criaBotao.setAttribute('value','FILTRAR');
     criaBotao.setAttribute('class','FILTRAR');
-    criaForm.appendChild(criaBotao);
+    divBotao.appendChild(criaBotao);
 }
 
 //funcao que consome a api da categoria populares
@@ -369,7 +366,6 @@ function requestPopulares() {
         .then(dados =>{
 
             todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -765,6 +761,8 @@ function favorite(){
 
 //Funcao que adiciona o jogo aos favoritos e verifica se nao e repetido
 function AddFav(idDoJogo){
+    event.target = idDoJogo
+    console.log(event.target)
     var jogoClicado = jogosTemp.find(element => element.id === idDoJogo)
 
     console.log(!!meusFavoritos.find(element => element.id === jogoClicado.id))
@@ -811,26 +809,7 @@ function requestPc() {
                 num++
             })
         })
-    const selecionanav = document.querySelector('.headerNav')
-    let criaelement = document.createElement("fieldset")
-    criaelement.setAttribute('class', 'fieldset')
-    selecionanav.appendChild(criaelement)
-    const crialegend=document.createElement('legend')
-    crialegend.innerHTML = "Seleciona um gênero em PC"
-    criaelement.appendChild(crialegend)
-    nomeObj.forEach((categoria) =>{
-        const criadiv = document.createElement('div')
-        criaelement.appendChild(criadiv)
-        const criainput = document.createElement('input')
-        criainput.setAttribute('type', 'radio')
-        criainput.setAttribute('id', categoria)
-        criainput.setAttribute('name', 'caixa')
-        criadiv.appendChild(criainput)
-        const crialabel = document.createElement('label')
-        crialabel.setAttribute('for', categoria)
-        crialabel.innerHTML = categoria
-        criadiv.appendChild(crialabel)
-    })
+
         document.getElementById('carregarMais')
             .addEventListener('click',requestPc);
     const check = document.getElementById('ESTRATEGIA')

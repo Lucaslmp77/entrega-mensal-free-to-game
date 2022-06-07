@@ -104,8 +104,7 @@ body {
     min-height: 100%;
 }
 .sideBar ~ .homeContent {
-    /*width: calc(100% - 24rem);*/
-    left: 24rem;
+    left: 16%;
     width: 80%;
 }
 #carregarMais {
@@ -117,7 +116,7 @@ body {
     border-radius: 1.2rem;
     border: none;
     top: 95%;
-    left: calc(100% - 41.9%);
+    left: calc(100% - 45%);
     transform: translate(-50%, -50%);
     text-transform: uppercase;
     z-index: 10;
@@ -132,24 +131,20 @@ body {
 .gallery {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 1.5rem 0;
     margin: 0 auto;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2rem;
+    padding-top: 2rem;
   }
 .galleryCard {
     background-position: center;
     background-repeat: no-repeat;
-    /*width: 31%;*/
     max-width: 350px;
     height: 400px;
     margin-bottom: 4%;
     padding: 3%;
     display: flex;
     align-items: center;
-    //justify-content: center;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 3px;
@@ -157,22 +152,18 @@ body {
     background-color: #32383E;
   }
 .galleryCard img{
-    //display: flex;
     width: 100%;
 }
   .galleryCardTitle {
     font-size: 2rem;
     font-weight: 600;
-    /*margin-bottom: 1rem;*/
       color: #7E8083;
     text-shadow: 5px 5px 10px black;
     cursor: default;
     text-align: center;
   }
   .galleryCard:hover {
-    /*width: 100%;*/
-    max-width: 370px;
-    /*transition:width 3s;*/
+    max-width: 360px;
     background-size: 90%;
     text-shadow: 5px 5px 10px black;
     filter: grayscale(0%);
@@ -201,9 +192,6 @@ body {
     width: 90rem;
     height: 30rem;
 
-    /* background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; */
   }
 .headerNav {
     flex-direction: column;
@@ -213,7 +201,7 @@ body {
     justify-content: space-around;
     //gap: 14rem;
     border-bottom: 1px solid rgba(28,28,28,.6);
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: white;
     font-weight: 700;
     width: calc(100% - 24rem);
@@ -243,9 +231,11 @@ body {
     width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 #formulario{
+    font-size: 1.5rem;
+    color: #7E8083;
     width: 90%;
     display: flex;
     justify-content: space-around;
@@ -297,6 +287,9 @@ legend{
     text-align: center;
 }
 @media (max-width: 1250px){
+    .galleryBanner{
+        max-width: 100%;
+    }
     .gallery{
         display: grid;
         width: 90%;
@@ -308,23 +301,30 @@ legend{
         max-width: 350px;
         height: 300px;
     }
-    .headerNav{
-        width: 84%;
-        left: 16%;
-    }
+    /*.headerNav{
+        max-width: 100%;
+
+    }*/
    .homeContent{
        left: 0;
+       margin-top: 15%;
    }
     .galleryCard:hover{
-        width: 103%;
+        /*width: 103%;*/
     }
     .sideBar ~ .homeContent {
         width: calc(100% - 35rem);
         left: 25%;
     }
+    #formulario{
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 940px){
+    .galleryBanner{
+        max-width: 120%;
+    }
     .sideBar h1{
         display: none;
     }
@@ -339,10 +339,10 @@ legend{
     #carregarMais{
         width: 40%;
     }
-    .headerNav{
-        width: 84%;
+    /*.headerNav{
+        width: 90%;
         left: 16%;
-    }
+    }*/
     .sideBar ~ .homeContent {
         width: calc(100% - 35rem);
         left: 25%;
@@ -350,13 +350,28 @@ legend{
     /*.galleryCard:hover{
         width: 103%;
     }*/
+    .homeContent{
+        left: 0;
+        margin-top: 15%;
+    }
 }
 @media (max-width: 750px){
+    .galleryBanner{
+        max-width: 140%;
+    }
     .galleryCard:hover{
-        width: 103%;
+        /*width: 103%;*/
+        background: #7A8288;
+    }
+    .galleryCardTitle{
+        color: #FFFFFF;
     }
     #carregarMais{
         width: 25%;
+    }
+    .homeContent{
+        margin-top: 25%;
+        height: 100%;
     }
 }
 @media (max-width: 1450px){
@@ -370,21 +385,52 @@ legend{
         align-items: center;
     }
     .headerNav{
-        height: 200px;
+        height: 210px;
+        width: 100%;
+        left: 16%;
+    }
+    .ancorasDiv{
+        justify-content: center;
+        gap: 6%;
     }
     .divCategorias{
         flex-direction: column;
         display: flex;
     }
     .homeContent{
-        margin-top: 30%;
+        margin-top: 10%;
     }
     .sideBar{
         max-width: 16%;
     }
+    #formulario{
+        flex-direction: column;
+    }
+}
+@media (max-width: 550px){
+    .galleryBanner{
+        min-width: 150%;
+        max-width: 170%;
+        height: 30%;
+    }
+    .homeContent{
+        margin-top: 25%;
+    }
+}
+@media (max-width: 400px){
+    .galleryBanner{
+        min-width: 500%;
+        max-width: 600%;
+        height: 30%;
+    }
+    .homeContent{
+        height: 100%;
+        margin-top: 15%;
+    }
     .headerNav{
         max-width: 84%;
         left: 16%;
+        height: 250px;
     }
 }
 .FILTRAR{
