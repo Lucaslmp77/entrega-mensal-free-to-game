@@ -19,6 +19,20 @@ export function runHeader() {
         a.addEventListener('click', function () {
             seta.forEach(a => a.classList.remove('activeHead'));
             this.classList.add('activeHead');
+            if(a.classList.value === 'pc activeHead'){
+                plataforma = 1;
+                console.log(plataforma);
+            }
+            else if(a.classList.value === 'browser activeHead'){
+                plataforma = 2;
+                console.log(plataforma);
+            }
+            else if(a.classList.value === 'all activeHead'){
+                plataforma = 0;
+                console.log(plataforma);
+            }
         });
     });
 }
+
+var plataforma;

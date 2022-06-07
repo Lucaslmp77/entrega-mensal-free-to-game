@@ -9,9 +9,9 @@
 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc   ====PC====*/ 
 /* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser   ====browser====*/ 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games   ====ALL====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games   ====ALL====*/
 
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity   ====PC and POPULARITY====*/ 
+/* https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity&platform=pc  ====PC and POPULARITY====*/
 
 //variaveis para consumo da api e carregar mais.
 var jogos = [];
@@ -38,19 +38,7 @@ function removeRequests(nickPage){
     }
 }
 
-export function sortLinks() {
-    var plataform = ['', 'platform=pc&', 'platform=browser&'];
-    var category = ['sort-by=popularity', 'sort-by=relevance', 'sort-by=alphabetical', 'category=mmorpg', 'category=moba', 'category=card', 'category=strategy', 'category=open-world'];
-
-    for(var i = 0; i < 3; i++){
-        for(var j = 0; j < 8; j++){
-            var links = `https://free-to-play-games-database.p.rapidapi.com/api/games?${plataform[i]}${category[j]}`;
-            console.log(links);
-        }
-    }
-}
-
-export function request() {
+export function request(url) {
     const options = {
         method: 'GET',
         headers: {
@@ -59,7 +47,7 @@ export function request() {
         }
     };
 
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?category=moba', options)
+    fetch(url, options)
         .then(response => response.json())
         .then(dados =>{
             var todosJogos = dados;
@@ -71,23 +59,6 @@ export function request() {
             })
         })
 }
-
-/* export function homeClick(){
-    let apagaSecao = document.querySelector('.gallery');
-    var setaAncora = document.querySelector('.ancHome');
-    setaAncora.addEventListener('click', () => {
-            apagaSecao.innerText= "";
-            var recebeClass = document.querySelector('.removeBotao');
-            recebeClass.style.display = '';
-            var recebeClassBanner = document.querySelector('.galleryBanner');
-            recebeClassBanner.style.display = '';
-            num = 0;
-            removeRequests('request');
-            request('popularity');
-        });
-    document.getElementById('carregarMais')
-        .addEventListener('click', request);
-} */
 
 //Funcao que cria as tags utilizadas em cada card + btn favoritos
 function criaCard(jogos) {

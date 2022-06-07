@@ -247,3 +247,15 @@ legend{
     background-color: rgb(236, 16, 89) !important;
     color: white;
 }
+
+.chupaNervo{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 1.8rem;
+    color: white;
+    width: 20rem;
+    height: 30rem;
+    z-index: 500;
+    left: 50rem;
+}

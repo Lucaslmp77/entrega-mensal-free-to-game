@@ -1,4 +1,4 @@
-const requestBanner = async() => {
+export const requestBanner = async() => {
     const optionsBanner = {
         method: 'GET',
         headers: {
@@ -22,5 +22,3 @@ function criaBanner(jogosBanner) {
     criaBanner.style.backgroundImage=`url(${jogosBanner.thumbnail})`;
     setaDiv.insertBefore(criaBanner, carregarMais);
 }
-
-requestBanner();

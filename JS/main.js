@@ -14,13 +14,7 @@ import {
     request
 } from './requisicoes.js'
 
-import {
-    sortLinks
-} from './requisicoes.js'
-
 runHeader();
 runSideBar();
 createHomeContent();
 request();
-
-sortLinks();

@@ -1,3 +1,7 @@
+import {
+    request
+} from './requisicoes.js'
+
 function createSideBar() {
     const setaBody = document.querySelector('body');
     const criaDiv = document.createElement('div');
@@ -59,9 +63,61 @@ function categorias() {
         a.addEventListener('click', function () {
             seta.forEach(a => a.classList.remove('active'));
             this.classList.add('active');
+            if(a.classList.value === 'ancHome active'){
+                let apagaSecao = document.querySelector('.gallery');
+                setCategory = 'sort-by=popularity';
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancRelevancia active'){
+                setCategory = 'sort-by=relevance';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancAlfabetica active'){
+                setCategory = 'sort-by=alphabetical';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancMmorpg active'){
+                setCategory = 'category=mmorpg';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancMoba active'){
+                setCategory = 'category=moba';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancCard active'){
+                setCategory = 'category=card';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancStrategy active'){
+                setCategory = 'category=strategy';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            else if(a.classList.value === 'ancOpenWorld active'){
+                setCategory = 'category=open-world';
+                let apagaSecao = document.querySelector('.gallery');
+                apagaSecao.innerText= ""
+                console.log(setCategory);
+            }
+            var url = `https://free-to-play-games-database.p.rapidapi.com/api/games?${setCategory}`;
+            request(url);
         });
     });
 }
+
+var setCategory;
 
 export function runSideBar() {
     createSideBar();
