@@ -199,7 +199,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    //gap: 14rem;
     border-bottom: 1px solid rgba(28,28,28,.6);
     font-size: 2rem;
     color: white;
@@ -209,7 +208,6 @@ body {
     height: 8rem;
     z-index: 100;
     background-color: #272B30;
-    //border: 2px solid black;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 .headerNav a{
@@ -236,9 +234,9 @@ body {
 #formulario{
     font-size: 1.5rem;
     color: #7E8083;
-    width: 90%;
+    width: 95%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 .divCategorias{
     width: 100%;

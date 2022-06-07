@@ -1,31 +1,3 @@
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity   ====POPULARIDADE==HOME==*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance   ====RELEVÂNCIA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical   ====ALFABÉTICA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?category=mmorpg  ====MMORPG====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?category=moba   ====MOBA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?category=card   ====CARD GAMES====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?category=strategy   ====ESTRATÉGIA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?category=open-world   ====OPEN WORLD====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc   ====PC====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser   ====browser====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games   ====ALL====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=popularity   ====PC and POPULARITY====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=relevance   ====PC and RELEVANCE====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=alphabetical   ====PC and ALPHABETICAL====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=mmorpg   ====PC and MMORPG====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=moba   ====PC and MOBA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=card   ====PC and CARD====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=strategy   ====PC and STRATEGY====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=PC&category=open-world   ====PC and OPEN WORLD====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=popularity   ====BROWSER and POPULARITY====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=relevance   ====BROWSER and RELEVANCE====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=alphabetical   ====BROWSER and ALPHABETICAL====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=mmorpg   ====BROWSER and MMORPG====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=moba   ====BROWSER and MOBA====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=card   ====BROWSER and CARD====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=strategy   ====BROWSER and STRATEGY====*/
-/* https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&category=open-world   ====BROWSER and OPEN WORLD====*/
-
 //variaveis para consumo da api e carregar mais.
 var jogos = [];
 var num = 0;
@@ -38,26 +10,35 @@ let apagaSecao = document.querySelector('.gallery');
 
 //favoritos
 var meusFavoritos = [];
-//objetos requests
-var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld, requestPc, requestPcRelevance];
 
-//variaveis de jogos
+//objetos requests
+var requests = [requestPopulares, requestRelevancia, requestAlfabetica, requestMmo, requestMoba, requestCard, requestStrategy, requestOpenWorld, RequestBrowser, RequestPc, RequestAll];
+
+//variaveis categorias para pc
+var CategoriaPcPopulares = []
+var CategoriaPcRelevancia = []
+var CategoriaPcAlfabetica = []
 var CategoriaPcMMORPG = []
 var CategoriaPcMoba = []
 var CategoriaPcCard = []
 var CategoriaPcEstrategia = []
 var CategoriaPcOpenword = []
+//variaveis categorias para browser
+var CategoriaBrowserPopulares = []
+var CategoriaBrowserRelevancia = []
+var CategoriaBrowserAlfabetica = []
 var CategoriaBrowserMMORPG = []
 var CategoriaBrowserMoba = []
 var CategoriaBrowserCard = []
 var CategoriaBrowserEstrategia = []
 var CategoriaBrowserOpenword = []
+//variaveis plataformas
 var todosJogosPC = []
 var TodosJogosBrowser = []
+var AllApi = []
 
 function categoriasdoPCeBrowser(){
     var form = document.getElementById('formulario');
-    var selecionado2 = document.getElementsByName('selecione');
     var pc2 = document.getElementById('PC2');
     var browser2 = document.getElementById('BROWSER2');
     var mmorpg2 = document.getElementById('MMORPG2');
@@ -65,6 +46,10 @@ function categoriasdoPCeBrowser(){
     var card2 = document.getElementById('CARD2');
     var estrategia2 = document.getElementById('ESTRATEGIA2');
     var openword2 = document.getElementById('OPENWORD2');
+
+    var setaPopular = document.getElementById('POPULAR');
+    var setaRelevance = document.getElementById('RELEVANCE');
+    var setaAlfabet = document.getElementById('ALFABET');
 
     const options = {
         method: 'GET',
@@ -84,6 +69,91 @@ function categoriasdoPCeBrowser(){
             CategoriaPcEstrategia = todosJogosPC.filter(element => element.genre === 'Strategy');
 
         })
+    const all = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', all)
+        .then(response => response.json())
+        .then(dados =>{AllApi = dados;})
+
+    const opcoesPcPopularity = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity', opcoesPcPopularity)
+    .then(response => response.json())
+    .then(dados =>{CategoriaPcPopulares = dados;})
+
+    const opcoesPcRelevance = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=relevance', opcoesPcRelevance)
+    .then(response => response.json())
+    .then(dados =>{CategoriaPcRelevancia = dados;})
+
+    const opcoesPcAlfabet = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=alphabetical', opcoesPcAlfabet)
+    .then(response => response.json())
+    .then(dados =>{CategoriaPcAlfabetica = dados;})
+
+    /* -------------------------------------------------------------------------------------------------------------------------- */
+
+    const opcoesBrowserPopularity = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=popularity', opcoesBrowserPopularity)
+    .then(response => response.json())
+    .then(dados =>{CategoriaBrowserPopulares = dados;})
+
+    const opcoesBrowserRelevance = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=relevance', opcoesBrowserRelevance)
+    .then(response => response.json())
+    .then(dados =>{CategoriaBrowserRelevancia = dados;})
+
+    const opcoesBrowserAlfabet = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
+        }
+    };
+
+    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc&sort-by=alphabetical', opcoesBrowserAlfabet)
+    .then(response => response.json())
+    .then(dados =>{CategoriaBrowserAlfabetica = dados;})
+    
     const opcoes = {
         method: 'GET',
         headers: {
@@ -125,6 +195,10 @@ function categoriasdoPCeBrowser(){
         if(pc2.selected){
             apagaSecao.innerHTML="";
             removeBtn()
+
+            if(setaPopular.checked){CategoriaPcPopulares.forEach((elemento)=>{ criaCard(elemento)})}
+            if(setaRelevance.checked){CategoriaPcRelevancia.forEach((elemento)=>{ criaCard(elemento)})}
+            if(setaAlfabet.checked){CategoriaPcAlfabetica.forEach((elemento)=>{ criaCard(elemento)})}
             if(mmorpg2.checked){CategoriaPcMMORPG.forEach((elemento)=>{ criaCard(elemento)})}
             if(moba2.checked){CategoriaPcMoba.forEach((elemento)=>{criaCard(elemento)})}
             if(card2.checked){CategoriaPcCard.forEach((elemento)=>{criaCard(elemento)})}
@@ -134,6 +208,9 @@ function categoriasdoPCeBrowser(){
         if(browser2.selected){
             apagaSecao.innerHTML="";
             removeBtn()
+            if(setaPopular.checked){CategoriaBrowserPopulares.forEach((elemento)=>{criaCard(elemento)})}
+            if(setaRelevance.checked){CategoriaBrowserRelevancia.forEach((elemento)=>{criaCard(elemento)})}
+            if(setaAlfabet.checked){CategoriaBrowserAlfabetica.forEach((elemento)=>{criaCard(elemento)})}
             if(mmorpg2.checked){CategoriaBrowserMMORPG.forEach((elemento)=>{criaCard(elemento)})}
             if(moba2.checked){CategoriaBrowserMoba.forEach((elemento)=>{criaCard(elemento)})}
             if(card2.checked){CategoriaBrowserCard.forEach((elemento)=>{criaCard(elemento)})}
@@ -156,7 +233,6 @@ function requestPopulares() {
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -194,8 +270,6 @@ function requestRelevancia() {
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -234,8 +308,6 @@ function requestAlfabetica() {
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -274,8 +346,6 @@ function requestMmo() {
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -314,8 +384,6 @@ function requestMoba(){
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) =>{
                 criaCard(elemento);
@@ -354,8 +422,6 @@ function requestCard(){
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) =>{
                 criaCard(elemento);
@@ -394,8 +460,6 @@ function requestStrategy(){
         .then(response => response.json())
         .then(dados =>{
 
-            todosJogos = dados;
-            console.log(todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) =>{
                 criaCard(elemento);
@@ -404,6 +468,21 @@ function requestStrategy(){
         })
     document.getElementById('carregarMais')
         .addEventListener('click',requestStrategy);
+}
+
+//funcao que executa o conteudo da categoria estrategia (quando clicada)
+function strategyClick(){
+    var setaAncora = document.querySelector('.ancStrategy');
+    setaAncora.addEventListener('click', () => {
+        apagaSecao.innerText= "";
+        var recebeClass = document.querySelector('.removeBotao');
+        recebeClass.style.display = '';
+        var recebeClassBanner = document.querySelector('.galleryBanner');
+        recebeClassBanner.style.display = '';
+        num = 0;
+        removeRequests('requestStrategy');
+        requestStrategy();
+    });
 }
 
 //funcao que executa o conteudo da categoria Open World
@@ -419,8 +498,6 @@ function requestOpenWorld(){
         .then(response => response.json())
         .then(dados => {
 
-            todosJogos = dados;
-            console.log("open",todosJogos);
             jogosTemp = dados.slice(0+num, 9+num)
             jogosTemp.forEach((elemento) => {
                 criaCard(elemento);
@@ -536,11 +613,7 @@ function favorite(){
 
 //Funcao que adiciona o jogo aos favoritos e verifica se nao e repetido
 function AddFav(idDoJogo){
-    event.target = idDoJogo
-    console.log(event.target)
-    var jogoClicado = jogosTemp.find(element => element.id === idDoJogo)
-
-    console.log(!!meusFavoritos.find(element => element.id === jogoClicado.id))
+    var jogoClicado = AllApi.find(element => element.id === idDoJogo)
     // varifica se ja tem o jogo na lista de favoritos.
     if(!!meusFavoritos.find(element => element.id === jogoClicado.id)) {
         //remover o brilho da estrela.
@@ -553,41 +626,76 @@ function AddFav(idDoJogo){
     const brilhaEstrela = document.getElementById(`${jogoClicado.id}`)
     brilhaEstrela.style.color = "red"
     brilhaEstrela.style.filter = "brightness(100)"
-    console.log("Jogo clicado",jogoClicado)
     meusFavoritos.push(jogoClicado)
-    console.log("MEUS_FAVORITOS: ",meusFavoritos);
 }
 
-function requestPc() {
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
-        }
-    };
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=popularity', options)
-        .then(response => response.json())
-        .then(dados =>{
+function AllClick(){
+    var setaAncora = document.querySelector('.All');
+    setaAncora.addEventListener('click', () => {
+        apagaSecao.innerText= "";
+        var recebeClass = document.querySelector('.removeBotao');
+        recebeClass.style.display = '';
+        var recebeClassBanner = document.querySelector('.galleryBanner');
+        recebeClassBanner.style.display = '';
+        num = 0;
+        removeRequests('RequestAll');
+        RequestAll()
+    });
+}
 
-            todosJogos = dados;
-            console.log(todosJogos);
-            jogosTemp = dados.slice(0+num, 9+num)
-            jogosTemp.forEach((elemento) => {
+/* ----------------------------------------------------------------------------------------------------------------------------------- */
+//remove eventListener dos requests de cada categoria
+function removeRequests(nickPage){
+    for(var i = 0; i < requests.length; i++){
+        if(requests[i] !== nickPage){
+            document.getElementById('carregarMais')
+                .removeEventListener('click',requests[i]);
+        }
+    }
+}
+function RequestAll(){
+    var jogosTempApi = []
+    jogosTempApi = AllApi.slice(0+num, 9+num)
+    jogosTempApi.forEach((elemento) => {
+        criaCard(elemento);
+        num++
+    })
+    document.getElementById('carregarMais')
+        .addEventListener('click',RequestAll);
+}
+function BrowserClick(){
+    var setaAncora = document.querySelector('.Browser');
+    setaAncora.addEventListener('click', () => {
+        apagaSecao.innerText= "";
+        var recebeClass = document.querySelector('.removeBotao');
+        recebeClass.style.display = '';
+        var recebeClassBanner = document.querySelector('.galleryBanner');
+        recebeClassBanner.style.display = '';
+        num = 0;
+        removeRequests('RequestBrowser');
+        RequestBrowser()
+    });
+}
+function RequestBrowser(){
+    var jogosTempBrowser = []
+    jogosTempBrowser = TodosJogosBrowser.slice(0+num, 9+num)
+    jogosTempBrowser.forEach((elemento) => {
                 criaCard(elemento);
                 num++
             })
-        })
-
     document.getElementById('carregarMais')
-        .addEventListener('click',requestPc);
-    const check = document.getElementById('ESTRATEGIA')
-    check.addEventListener('click', () =>{
-        requestPcRelevance()
-    })
+        .addEventListener('click',RequestBrowser);
 }
-
-//funcao que executa o conteudo da categoria home (quando clicada)
+function RequestAll() {
+        var jogosTempPc = []
+        jogosTempPc = todosJogosPC.slice(0+num, 9+num)
+        jogosTempPc.forEach((elemento) => {
+            criaCard(elemento);
+            num++
+        })
+        document.getElementById('carregarMais')
+            .addEventListener('click',RequestPc);
+    }
 function pcClick(){
     var setaAncora = document.querySelector('.PC');
     setaAncora.addEventListener('click', () => {
@@ -597,49 +705,21 @@ function pcClick(){
         var recebeClassBanner = document.querySelector('.galleryBanner');
         recebeClassBanner.style.display = '';
         num = 0;
-        removeRequests('requestPc');
-        requestPc();
+        removeRequests('RequestPc');
+        RequestPc();
     });
 }
-
-function requestPcRelevance() {
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-            'X-RapidAPI-Key': 'e8c5f0275emsh2db5dab1da3382dp129146jsn7339bd21e95d'
-        }
-    };
-    fetch('https://free-to-play-games-database.p.rapidapi.com/api/games?platform=browser&sort-by=relevance', options)
-        .then(response => response.json())
-        .then(dados =>{
-
-            todosJogos = dados;
-            console.log(todosJogos);
-            jogosTemp = dados.slice(0+num, 9+num)
-            jogosTemp.forEach((elemento) => {
-                criaCard(elemento);
-                num++
-            })
-        })
+function RequestPc() {
+    var jogosTempPc = []
+    jogosTempPc = todosJogosPC.slice(0+num, 9+num)
+    jogosTempPc.forEach((elemento) => {
+        criaCard(elemento);
+        num++
+    })
     document.getElementById('carregarMais')
-        .addEventListener('click',requestPcRelevance);
+        .addEventListener('click',RequestPc);
 }
-
-//funcao que executa o conteudo da categoria home (quando clicada)
-function pcRelevanceClick(){
-    var setaAncora = document.querySelector('.ancRelevancia');
-    setaAncora.addEventListener('click', () => {
-        apagaSecao.innerText= "";
-        var recebeClass = document.querySelector('.removeBotao');
-        recebeClass.style.display = '';
-        var recebeClassBanner = document.querySelector('.galleryBanner');
-        recebeClassBanner.style.display = '';
-        num = 0;
-        removeRequests('requestPcRelevance');
-        requestPcRelevance();
-    });
-}
+/* ----------------------------------------------------------------------------------------------------------------------------------- */
 
 //remove eventListener dos requests de cada categoria
 function removeRequests(nickPage){
@@ -663,7 +743,7 @@ function removeBanner() {
     recebeClass.style.display = 'none';
 }
 
-requestBanner();
+/* requestBanner(); */
 requestPopulares();
 homeClick();
 relevanciaClick();
@@ -671,8 +751,10 @@ alfabeticaClick();
 mmoClick();
 mobaClick();
 cardClick();
-//strategyClick();
+strategyClick();
 openWorldClick();
+categoriasdoPCeBrowser();
 pcClick();
-pcRelevanceClick();
-categoriasdoPCeBrowser()
+categoriasdoPCeBrowser();
+BrowserClick();
+AllClick();
